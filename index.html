@@ -868,12 +868,13 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
     <h2>📄 법률 문서 작성 도우미 <span class="price-tag">베타 기간 무료</span></h2>
     <p class="doc-gen-sub">상황을 입력하면 AI가 문서 초안을 만들어드려요. 생성된 초안은 반드시 내용을 검토 후 제출하세요. 법률 자문이 아닌 참고용 초안입니다.</p>
     <div class="doc-tabs">
-      <div class="doc-tab active" onclick="switchDocTab(0)">내용증명</div>
-      <div class="doc-tab" onclick="switchDocTab(1)">고소장</div>
-      <div class="doc-tab" onclick="switchDocTab(2)">노동청 진정서</div>
+      <div class="doc-tab active" onclick="switchDocTab(0)">내용증명 (중고거래)</div>
+      <div class="doc-tab" onclick="switchDocTab(1)">내용증명 (전세보증금)</div>
+      <div class="doc-tab" onclick="switchDocTab(2)">고소장</div>
+      <div class="doc-tab" onclick="switchDocTab(3)">노동청 진정서</div>
     </div>
 
-    <!-- 내용증명 폼 -->
+    <!-- 내용증명 폼 — 중고거래 -->
     <div class="doc-form active" id="df-0">
       <div class="form-grid">
         <div class="field"><label>발신인 이름</label><input id="d0-myname" placeholder="홍길동"></div>
@@ -908,11 +909,46 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       <div class="form-grid full">
         <div class="field"><label>피해 상황 (구체적으로)</label><textarea id="d0-situation" placeholder="입금 후 운송장을 보내줬는데 가짜였고, 이후 연락이 두절됐습니다. 3일간 카톡 읽씹 후 차단당했어요."></textarea></div>
       </div>
-      <button class="gen-btn" id="genbtn-0" onclick="generateDoc(0)">내용증명 초안 생성하기</button>
+      <button class="gen-btn" id="genbtn-0" onclick="generateDoc(0)">내용증명 초안 생성하기 (중고거래)</button>
+    </div>
+
+    <!-- 내용증명 폼 — 전세보증금 -->
+    <div class="doc-form" id="df-1">
+      <div class="form-grid">
+        <div class="field"><label>임차인 이름 (본인)</label><input id="d3-myname" placeholder="홍길동"></div>
+        <div class="field"><label>임차인 연락처</label><input id="d3-myphone" placeholder="010-1234-5678"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>임차인 현재 주소</label><input id="d3-myaddr" placeholder="서울시 강남구 테헤란로 123 (거주 중인 주소)"></div>
+        <div class="field"><label>임대인 이름 (집주인)</label><input id="d3-theirname" placeholder="김집주인"></div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>임대 주택 주소 (수신인 주소)</label><input id="d3-houseaddr" placeholder="서울시 마포구 와우산로 123 101호"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>보증금 금액 (원)</label><input type="number" id="d3-deposit" placeholder="50000000"></div>
+        <div class="field"><label>임대차 계약 기간</label><input id="d3-period" placeholder="예: 2024년 3월 1일 ~ 2026년 2월 28일"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>계약 만료일</label>
+          <div style="display:flex;gap:4px">
+            <select id="d3-ey" style="flex:2;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d3-em" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d3-ed" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+          </div>
+        </div>
+        <div class="field"><label>반환 요청 기한</label>
+          <select id="d3-deadline"><option value="7">7일</option><option value="10">10일</option><option value="14" selected>14일</option><option value="30">30일</option></select>
+        </div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>추가 상황 (선택)</label><textarea id="d3-situation" placeholder="예: 여러 차례 반환 요청을 했으나 집주인이 계속 미루고 있습니다. 현재 새 거주지로 이사가 필요한 상황입니다."></textarea></div>
+      </div>
+      <button class="gen-btn" id="genbtn-1" onclick="generateDoc(1)">내용증명 초안 생성하기 (전세보증금)</button>
     </div>
 
     <!-- 고소장 폼 -->
-    <div class="doc-form" id="df-1">
+    <div class="doc-form" id="df-2">
       <div class="form-grid">
         <div class="field"><label>고소인 이름</label><input id="d1-myname" placeholder="홍길동"></div>
         <div class="field"><label>고소인 주민번호 앞자리</label><input id="d1-myid" placeholder="901234 (생략 가능)"></div>
@@ -934,11 +970,11 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       <div class="form-grid full">
         <div class="field"><label>피해 경위 (구체적·시간순으로)</label><textarea id="d1-situation" placeholder="언제, 어디서, 어떻게 피해를 입었는지 시간 순서대로 작성해주세요."></textarea></div>
       </div>
-      <button class="gen-btn" id="genbtn-1" onclick="generateDoc(1)">고소장 초안 생성하기</button>
+      <button class="gen-btn" id="genbtn-2" onclick="generateDoc(2)">고소장 초안 생성하기</button>
     </div>
 
     <!-- 노동청 진정서 폼 -->
-    <div class="doc-form" id="df-2">
+    <div class="doc-form" id="df-3">
       <div class="form-grid">
         <div class="field"><label>진정인(근로자) 이름</label><input id="d2-myname" placeholder="홍길동"></div>
         <div class="field"><label>연락처</label><input id="d2-myphone" placeholder="010-1234-5678"></div>
@@ -962,12 +998,14 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
             <select id="d2-ed" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
           </div>
         </div>
+      </div>
+      <div class="form-grid">
         <div class="field"><label>체불 금액 (원)</label><input type="number" id="d2-amount" placeholder="1500000"></div>
       </div>
       <div class="form-grid full">
         <div class="field"><label>체불 내용 (구체적으로)</label><textarea id="d2-situation" placeholder="월급 300만원을 3개월째 지급하지 않고 있습니다. 여러 번 요청했으나 '다음 달에 준다'며 미루고 있어요."></textarea></div>
       </div>
-      <button class="gen-btn" id="genbtn-2" onclick="generateDoc(2)">진정서 초안 생성하기</button>
+      <button class="gen-btn" id="genbtn-3" onclick="generateDoc(3)">진정서 초안 생성하기</button>
     </div>
 
     <div class="loading" id="doc-loading" style="display:none">
@@ -1120,6 +1158,7 @@ function initDateSelects(yId, mId, dId) {
 initDateSelects('d0-year','d0-month','d0-day');
 initDateSelects('d2-sy','d2-sm','d2-sd');
 initDateSelects('d2-ey','d2-em','d2-ed');
+initDateSelects('d3-ey','d3-em','d3-ed');
 
 // 날짜 값 가져오기 헬퍼
 function getDateVal(yId, mId, dId) {
@@ -1130,8 +1169,8 @@ function getDateVal(yId, mId, dId) {
 }
 
 // 케이스 탭 → 문서 탭 자동 연동
-const caseToDocTab = [0, 2, 0, 0]; // 중고→내용증명, 임금→진정서, 전세→내용증명, 모욕→고소장
-const caseToDocTabMap = [0, 2, 0, 1];
+// 중고→내용증명(중고), 임금→진정서, 전세→내용증명(전세), 모욕→고소장
+const caseToDocTabMap = [0, 3, 1, 2];
 
 // 상황 진단
 const diagnoseData = [
@@ -1225,11 +1264,11 @@ function switchDocTab(n) {
 
 // 문서 생성
 async function generateDoc(n) {
-  const titles = ['내용증명', '고소장', '노동청 진정서'];
+  const titles = ['내용증명 (중고거래)', '내용증명 (전세보증금)', '고소장', '노동청 진정서'];
   let prompt = '';
-  let valid = true;
 
   if (n === 0) {
+    // 중고거래 내용증명
     const myname = document.getElementById('d0-myname').value.trim();
     const myphone = document.getElementById('d0-myphone').value.trim();
     const myaddr = document.getElementById('d0-myaddr').value.trim();
@@ -1263,7 +1302,44 @@ async function generateDoc(n) {
 6. 문서만 출력, 설명 제외
 
 중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
   } else if (n === 1) {
+    // 전세보증금 내용증명
+    const myname = document.getElementById('d3-myname').value.trim();
+    const myphone = document.getElementById('d3-myphone').value.trim();
+    const myaddr = document.getElementById('d3-myaddr').value.trim();
+    const theirname = document.getElementById('d3-theirname').value.trim();
+    const houseaddr = document.getElementById('d3-houseaddr').value.trim();
+    const deposit = document.getElementById('d3-deposit').value;
+    const period = document.getElementById('d3-period').value.trim();
+    const expiry = getDateVal('d3-ey','d3-em','d3-ed');
+    const deadline = document.getElementById('d3-deadline').value;
+    const situation = document.getElementById('d3-situation').value.trim();
+    if (!myname || !deposit || !houseaddr) { alert('임차인 이름, 보증금 금액, 임대 주택 주소는 필수입니다.'); return; }
+    prompt = `당신은 법률 문서 작성 전문가입니다. 아래 정보로 전세보증금 반환 요청 내용증명 문서를 작성하세요.
+
+발신인(임차인): ${myname}${myphone ? ' ('+myphone+')' : ''}${myaddr ? '\n현재 주소: '+myaddr : ''}
+수신인(임대인): ${theirname || '임대인'}
+임대 주택 주소: ${houseaddr}
+보증금: ${Number(deposit).toLocaleString()}원
+임대차 계약 기간: ${period || '미기재'}
+계약 만료일: ${expiry}
+반환 요청 기한: ${deadline}일
+추가 상황: ${situation || '없음'}
+작성일: ${today}
+
+요구사항:
+1. 한국 내용증명 표준 양식에 맞게 작성
+2. 임대차보호법 관련 조항 인용 (주택임대차보호법 제3조, 제4조 등)
+3. 계약 만료 사실과 보증금 미반환 사실 명확히 서술
+4. 기한 내 미반환 시 임차권등기명령 신청 및 보증금 반환 소송 제기 경고 포함
+5. 형식: 제목 / 발신인·수신인 정보 / 본문 / 날짜 / 서명란
+6. 문서만 출력, 설명 제외
+
+중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
+  } else if (n === 2) {
+    // 고소장
     const myname = document.getElementById('d1-myname').value.trim();
     const myaddr = document.getElementById('d1-myaddr').value.trim();
     const myphone = document.getElementById('d1-myphone').value.trim();
@@ -1290,7 +1366,9 @@ async function generateDoc(n) {
 5. 문서만 출력, 설명 제외
 
 중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
   } else {
+    // 노동청 진정서
     const myname = document.getElementById('d2-myname').value.trim();
     const myphone = document.getElementById('d2-myphone').value.trim();
     const bossname = document.getElementById('d2-bossname').value.trim();
@@ -1303,7 +1381,7 @@ async function generateDoc(n) {
 
 진정인(근로자): ${myname}${myphone ? ' ('+myphone+')' : ''}
 피진정인(사업주): ${bossname || '미상'}${company ? ' / 사업장: '+company : ''}
-근무 기간: ${period || '미기재'}
+근무 기간: ${period}
 체불 금액: ${amount ? Number(amount).toLocaleString()+'원' : '미상'}
 체불 내용: ${situation}
 작성일: ${today}
@@ -1341,8 +1419,9 @@ async function generateDoc(n) {
     document.getElementById('doc-text').textContent = text;
     document.getElementById('doc-output-title').textContent = `생성된 ${titles[n]} 초안`;
     document.getElementById('doc-output').classList.add('show');
-    // 다음 단계 모달 표시
-    showNextStep(n);
+    // 다음 단계 모달 (0=중고내용증명, 1=전세내용증명→0번모달, 2=고소장→1번, 3=진정서→2번)
+    const modalIdx = n === 0 ? 0 : n === 1 ? 0 : n === 2 ? 1 : 2;
+    showNextStep(modalIdx);
   } catch (e) {
     const err = document.getElementById('doc-err');
     err.textContent = '문서 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
