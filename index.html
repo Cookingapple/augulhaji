@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>억울하지 않게 — 법적 분쟁 셀프 대응 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0c1a35;
+  --navy2: #1a3460;
+  --blue: #2563b0;
+  --blue-l: #3b82f6;
+  --accent: #e85d26;
+  --accent-l: #ff7043;
+  --gold: #f0a500;
+  --bg: #f5f2ec;
+  --bg2: #edeae2;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --text2: #3d3d5c;
+  --text3: #7a7a9a;
+  --shadow: 0 2px 16px rgba(12,26,53,0.08);
+  --shadow-lg: 0 8px 32px rgba(12,26,53,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+
+/* NAV */
+nav{background:var(--navy);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.nav-logo{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:#fff;text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#fff}
+
+/* HERO */
+.hero{background:var(--navy);padding:72px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%,rgba(37,99,176,.3) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(232,93,38,.12) 0%,transparent 50%)}
+.hero-tag{display:inline-block;background:rgba(232,93,38,.18);border:1px solid rgba(232,93,38,.4);color:#ffaa80;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:20px;margin-bottom:22px;position:relative}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(26px,5vw,48px);font-weight:900;color:#fff;line-height:1.25;margin-bottom:18px;position:relative}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:clamp(13px,2vw,16px);color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 36px;position:relative;line-height:1.8}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;position:relative;margin-bottom:36px}
+.stat-num{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:900;color:var(--gold);display:block}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,.45)}
+.hero-cta{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:15px;padding:14px 36px;border-radius:8px;text-decoration:none;position:relative;cursor:pointer;border:none;transition:background .2s,transform .15s}
+.hero-cta:hover{background:var(--accent-l);transform:translateY(-1px)}
+
+/* DIAGNOSE */
+.diagnose-section{max-width:800px;margin:40px auto;padding:0 20px}
+.diagnose-card{background:var(--white);border-radius:16px;padding:28px 28px 24px;box-shadow:var(--shadow)}
+.diagnose-card h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.diagnose-card p{font-size:13px;color:var(--text3);margin-bottom:20px}
+.diag-q{font-size:14px;font-weight:700;color:var(--text2);margin-bottom:12px}
+.diag-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.diag-btn{background:var(--bg);border:1.5px solid #ddd;border-radius:10px;padding:12px 14px;font-size:13px;color:var(--text2);cursor:pointer;text-align:left;transition:all .2s;line-height:1.5}
+.diag-btn:hover{border-color:var(--blue);background:#eef5ff;color:var(--blue)}
+.diag-btn.selected{border-color:var(--blue);background:#eef5ff;color:var(--blue);font-weight:700}
+.diag-result{background:#eef5ff;border-radius:10px;padding:16px 18px;display:none}
+.diag-result.show{display:block}
+.diag-result p{font-size:13px;color:var(--navy2);margin:0}
+.diag-result strong{font-size:15px;display:block;margin-bottom:4px}
+
+/* DISC */
+.disc{background:#fff8e1;border-left:4px solid var(--gold);padding:12px 18px;margin:24px auto;max-width:800px;border-radius:0 8px 8px 0;font-size:12px;color:#5d4a00}
+.disc strong{color:#8a6500}
+
+/* CASES */
+.cases-section{max-width:800px;margin:0 auto;padding:0 20px 80px}
+.cases-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.ctab{background:var(--white);border:2px solid transparent;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
+.ctab:hover{border-color:#ddd;transform:translateY(-1px)}
+.ctab.active{border-color:var(--blue);background:#eef5ff}
+.ctab-icon{font-size:22px;display:block;margin-bottom:6px}
+.ctab-label{font-size:12px;font-weight:700;color:var(--text2);line-height:1.4}
+.ctab.active .ctab-label{color:var(--blue)}
+
+/* PANEL */
+.panel{display:none}
+.panel.active{display:block}
+.case-hero{border-radius:14px;padding:22px 24px;margin-bottom:20px;color:#fff}
+.case-hero-tag{font-size:10px;font-weight:700;letter-spacing:2px;opacity:.7;margin-bottom:6px}
+.case-hero-title{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;margin-bottom:4px}
+.case-hero-sub{font-size:13px;opacity:.65}
+
+/* PROG */
+.prog-wrap{background:var(--white);border-radius:12px;padding:16px 18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.prog-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px}
+.prog-bar{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-l));border-radius:99px;width:0%;transition:width .5s}
+
+/* CHECKLIST */
+.chklist{background:var(--white);border-radius:12px;padding:16px 18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.chklist h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0eee8;cursor:pointer;user-select:none}
+.ci:last-child{border-bottom:none}
+.ci input{width:17px;height:17px;accent-color:var(--blue);flex-shrink:0;margin-top:2px;cursor:pointer}
+.ci span,.ci label{font-size:13px;color:var(--text2);cursor:pointer;line-height:1.6}
+.ci.done span,.ci.done label{text-decoration:line-through;color:var(--text3)}
+
+/* STEPS */
+.sec-ttl{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);margin:24px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.steps{display:flex;flex-direction:column;gap:10px}
+.sc{background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;border:1.5px solid transparent;transition:all .2s;cursor:pointer}
+.sc:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg)}
+.sc.open{border-color:rgba(37,99,176,.2)}
+.sh{display:flex;align-items:center;gap:13px;padding:16px 18px}
+.sn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:16px;font-weight:900;flex-shrink:0;color:#fff}
+.sw{flex:1}
+.st{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.ss{font-size:11px;color:var(--text3)}
+.arr{font-size:16px;color:var(--text3);transition:transform .3s;display:inline-block}
+.sc.open .arr{transform:rotate(90deg)}
+.sb{display:none;padding:0 18px 18px;border-top:1px solid #f0eee8}
+.sc.open .sb{display:block}
+.sb p{font-size:13px;color:var(--text2);margin-top:13px;margin-bottom:8px;line-height:1.8}
+.sb ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.sb li{font-size:13px;color:var(--text2);padding-left:17px;position:relative;line-height:1.65}
+.sb li::before{content:'→';position:absolute;left:0;color:var(--blue-l);font-size:11px;top:3px}
+.tip{background:#eef5ff;border-left:3px solid var(--blue-l);border-radius:0 8px 8px 0;padding:9px 13px;margin-top:10px;font-size:12px;color:#1e3a6e;line-height:1.7}
+.warn{background:#fff3ee;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:9px 13px;margin-top:10px;font-size:12px;color:#7a2c00;line-height:1.7}
+.good{background:#f0fdf4;border-left:3px solid #16a34a;border-radius:0 8px 8px 0;padding:9px 13px;margin-top:10px;font-size:12px;color:#14532d;line-height:1.7}
+.route-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.route{background:var(--bg);border-radius:8px;padding:12px 13px;border:1px solid #ddd}
+.route h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.route p{font-size:11px;color:var(--text2);line-height:1.6;margin:0}
+.route.hl{background:#eef5ff;border-color:var(--blue)}
+.route.hl h4{color:var(--blue)}
+.badge-sm{display:inline-block;font-size:9px;padding:1px 6px;border-radius:99px;margin-left:5px;background:#dbeafe;color:#1d4ed8;vertical-align:middle}
+.tpl-wrap{margin-top:12px}
+.tpl-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text3);margin-bottom:6px;text-transform:uppercase}
+.tpl{background:#faf9f5;border:1px dashed #ccc;border-radius:8px;padding:14px;font-size:12px;line-height:2;color:var(--text2);white-space:pre-line;font-family:'Noto Serif KR',serif}
+.fi{background:#ffd96a;border-radius:3px;padding:1px 4px;color:#5a3e00;font-weight:700}
+.cost-box{background:var(--bg);border-radius:8px;padding:12px 13px;margin-top:10px;border:1px solid #e0ddd5}
+.cost-box h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.cost-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #e8e4dc;color:var(--text2)}
+.cost-row:last-child{border-bottom:none;font-weight:700;color:var(--navy)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.info-card{background:var(--bg);border-radius:8px;padding:11px 13px;border:1px solid #e0ddd5}
+.info-card h4{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.info-card p{font-size:12px;color:var(--text2);line-height:1.65;margin:0}
+.links-box{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.link-btn{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid #ddd;border-radius:8px;padding:9px 13px;font-size:12px;color:var(--blue);text-decoration:none;cursor:pointer;transition:all .2s}
+.link-btn:hover{background:#eef5ff;border-color:var(--blue)}
+.link-btn span{flex:1}
+.link-btn::after{content:'↗';font-size:11px;color:var(--text3)}
+
+/* CALCULATOR */
+.calc-section{margin-top:12px;background:var(--bg);border-radius:10px;padding:16px;border:1px solid #e0ddd5}
+.calc-section h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.calc-field label{display:block;font-size:11px;color:var(--text3);margin-bottom:4px}
+.calc-field input,.calc-field select{width:100%;padding:7px 10px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:var(--white);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+.calc-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:9px 18px;font-size:12px;font-weight:700;cursor:pointer;width:100%;margin-top:6px}
+.calc-result{background:#eef5ff;border-radius:8px;padding:12px 14px;margin-top:10px;display:none}
+.calc-result.show{display:block}
+.calc-result-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid #dbeafe}
+.calc-result-row:last-child{border-bottom:none;font-weight:700;color:var(--navy);font-size:14px}
+
+/* DOCUMENT GENERATOR */
+.doc-gen{background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow);margin-top:20px}
+.doc-gen h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.doc-gen-sub{font-size:13px;color:var(--text3);margin-bottom:20px}
+.doc-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.doc-tab{background:var(--bg);border:1.5px solid #ddd;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;color:var(--text2);transition:all .2s}
+.doc-tab.active{border-color:var(--blue);background:#eef5ff;color:var(--blue)}
+.doc-form{display:none}
+.doc-form.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-grid.full{grid-template-columns:1fr}
+.field label{display:block;font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:700}
+.field input,.field textarea,.field select{width:100%;padding:9px 11px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;transition:border-color .2s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);background:var(--white)}
+.field textarea{resize:vertical;min-height:80px}
+.gen-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:8px;transition:background .2s}
+.gen-btn:hover{background:var(--accent-l)}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
+.loading{text-align:center;padding:24px;color:var(--text3);font-size:13px}
+.dots span{animation:blink 1.2s infinite;opacity:0}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:0}50%{opacity:1}}
+.doc-output{display:none}
+.doc-output.show{display:block}
+.doc-output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.doc-output-head h3{font-size:14px;font-weight:700;color:var(--navy)}
+.copy-btn{background:var(--bg2);border:1px solid #ddd;border-radius:6px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;color:var(--text2)}
+.copy-btn:hover{background:#e0ddd5}
+.doc-text{background:#faf9f5;border:1px dashed #ccc;border-radius:8px;padding:16px;font-size:12px;line-height:2;color:var(--text);white-space:pre-wrap;font-family:'Noto Serif KR',serif;min-height:160px}
+.regen-btn{background:var(--bg2);border:1px solid #ddd;border-radius:8px;padding:9px;font-size:12px;cursor:pointer;width:100%;margin-top:8px;color:var(--text2)}
+.err-box{background:#fff3ee;border-radius:8px;padding:12px;font-size:12px;color:#7a2c00;margin-top:8px;display:none}
+.err-box.show{display:block}
+.price-tag{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:#92400e;margin-left:8px}
+
+/* DEADLINE CALC */
+.deadline-section{background:var(--white);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin:20px 0}
+.deadline-section h2{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.deadline-section p{font-size:13px;color:var(--text3);margin-bottom:16px}
+.dl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.dl-field label{display:block;font-size:11px;color:var(--text3);margin-bottom:4px}
+.dl-field select,.dl-field input{width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+.dl-results{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.dl-item{display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-radius:8px;padding:11px 14px;border:1px solid #e0ddd5}
+.dl-item.urgent{background:#fff3ee;border-color:#fca38a}
+.dl-item.expired{background:#fef2f2;border-color:#fca5a5}
+.dl-name{font-size:13px;font-weight:700;color:var(--navy)}
+.dl-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.dl-date{text-align:right}
+.dl-date-val{font-size:13px;font-weight:700;color:var(--text)}
+.dl-date-val.urgent{color:#e85d26}
+.dl-date-val.expired{color:#dc2626}
+.dl-dday{font-size:11px;color:var(--text3);margin-top:1px}
+
+/* KAKAO CTA */
+.kakao-cta{background:var(--navy);border-radius:14px;padding:28px 22px;text-align:center;margin:24px 0}
+.kakao-cta h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
+.kakao-cta p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:18px}
+.kakao-btn{display:inline-block;background:#fee500;color:#3a1d1d;font-weight:700;font-size:14px;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;margin-right:8px}
+.kakao-btn:hover{background:#fdd000}
+.email-form{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.email-form input{padding:10px 14px;border:none;border-radius:8px;font-size:13px;background:rgba(255,255,255,.12);color:#fff;width:220px}
+.email-form input::placeholder{color:rgba(255,255,255,.4)}
+.email-form button{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer}
+
+/* SUCCESS CASES */
+.cases-stories{background:var(--white);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin:20px 0}
+.cases-stories h2{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.story-card{background:var(--bg);border-radius:10px;padding:14px 15px;border:1px solid #e0ddd5}
+.story-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;margin-bottom:8px}
+.story-card p{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:8px}
+.story-result{font-size:12px;font-weight:700;color:#16a34a}
+.story-who{font-size:11px;color:var(--text3)}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.4);text-align:center;padding:32px 24px;font-size:12px;line-height:2}
+footer strong{color:rgba(255,255,255,.7)}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+
+/* LAWYER CHECKER */
+.lawyer-checker{background:var(--white);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);margin:20px 0}
+.lawyer-checker h2{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.lawyer-checker-sub{font-size:13px;color:var(--text3);margin-bottom:18px}
+.lc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.lc-field label{display:block;font-size:11px;color:var(--text3);margin-bottom:4px;font-weight:700}
+.lc-field input,.lc-field select{width:100%;padding:9px 11px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+.lc-checks{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.lc-check{display:flex;align-items:center;gap:10px;cursor:pointer}
+.lc-check input{width:17px;height:17px;accent-color:var(--blue);cursor:pointer}
+.lc-check label{font-size:13px;color:var(--text2);cursor:pointer}
+.lc-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;transition:background .2s}
+.lc-btn:hover{background:var(--navy2)}
+.lc-result{display:none;margin-top:16px;border-radius:12px;overflow:hidden}
+.lc-result.show{display:block}
+.lc-result-head{padding:16px 18px;color:#fff}
+.lc-result-head h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.lc-result-head p{font-size:13px;opacity:.85}
+.lc-result-body{padding:16px 18px;background:var(--bg);border:1px solid #ddd;border-top:none;border-radius:0 0 12px 12px}
+.lc-result-body p{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:10px}
+.lc-action-btn{display:block;text-align:center;padding:11px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;border:none;width:100%;margin-bottom:8px;transition:opacity .2s}
+.lc-action-btn:hover{opacity:.85}
+.lc-action-btn:last-child{margin-bottom:0}
+
+/* NEXT STEP MODAL */
+.next-step-overlay{position:fixed;inset:0;background:rgba(12,26,53,.6);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.next-step-overlay.show{display:flex}
+.next-step-modal{background:var(--white);border-radius:16px;padding:28px;max-width:500px;width:100%;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
+.ns-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text3);margin-top:-4px}
+.ns-title{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.ns-sub{font-size:13px;color:var(--text3);margin-bottom:20px}
+.ns-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.ns-step{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:10px;padding:13px 14px}
+.ns-num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.ns-text{font-size:13px;color:var(--text2);line-height:1.65}
+.ns-text strong{display:block;color:var(--navy);margin-bottom:2px;font-size:14px}
+.print-guide{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:14px 16px;margin-bottom:16px}
+.print-guide h4{font-size:13px;font-weight:700;color:#14532d;margin-bottom:10px}
+.print-step{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:12px;color:#166534;line-height:1.6}
+.print-step:last-child{margin-bottom:0}
+.print-num{width:20px;height:20px;border-radius:50%;background:#16a34a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.ns-disclaimer{background:#fff3ee;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:10px 13px;font-size:11px;color:#7a2c00;line-height:1.7}
+.ns-close-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:16px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .diag-opts{grid-template-columns:1fr}
+  .cases-tabs{grid-template-columns:repeat(2,1fr)}
+  .route-box,.two-col,.form-grid,.calc-row,.story-grid,.lc-grid{grid-template-columns:1fr}
+  .dl-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>⚖</span> 억울하지 않게</a>
+  <div class="nav-links">
+    <a href="#diagnose">상황 진단</a>
+    <a href="#cases">케이스 가이드</a>
+    <a href="#lawyer-check">변호사 필요 진단</a>
+    <a href="#doc-gen">문서 생성</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">대한민국 법적 약자를 위한 무료 가이드</div>
+  <h1>억울하게 당했다면,<br><em>이제 직접 대응하세요.</em></h1>
+  <p class="hero-sub">변호사 없이도 됩니다. 내 상황을 진단하고 처음부터 끝까지 무엇을 해야 할지 알려드려요.</p>
+  <div class="hero-stats">
+    <div><span class="stat-num">691만</span><span class="stat-lbl">연간 소송 건수 (2024)</span></div>
+    <div><span class="stat-num">39.5%</span><span class="stat-lbl">법률 서비스 못 쓰는 비율</span></div>
+    <div><span class="stat-num">무료</span><span class="stat-lbl">이 가이드는 전부 무료</span></div>
+  </div>
+  <button class="hero-cta" onclick="document.getElementById('diagnose').scrollIntoView({behavior:'smooth'})">내 상황 진단하기 →</button>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disc" style="margin-top:24px">
+  <strong>⚠ 면책공지:</strong> 본 서비스는 <strong>법률 문서 작성 도우미</strong>로, 법률 자문·상담·대리 서비스가 아닙니다. 생성된 문서는 사용자 입력 정보 기반의 참고용 초안이며, 제출 전 내용을 반드시 직접 검토하시기 바랍니다. 개별 사건의 법률적 판단은 전문 변호사에게 문의하세요.
+</div>
+
+<!-- DIAGNOSE -->
+<section id="diagnose" class="diagnose-section">
+  <div class="diagnose-card">
+    <h2>🔍 내 상황 진단</h2>
+    <p>어떤 케이스인지 모르겠다면 아래에서 선택해보세요.</p>
+    <div class="diag-q">지금 어떤 상황인가요?</div>
+    <div class="diag-opts">
+      <button class="diag-btn" onclick="diagnose(0)">💸 돈을 보냈는데 물건이 안 왔거나 연락이 끊겼어요</button>
+      <button class="diag-btn" onclick="diagnose(1)">💼 일했는데 월급·퇴직금을 못 받았어요</button>
+      <button class="diag-btn" onclick="diagnose(2)">🏠 전세 계약이 끝났는데 보증금을 안 돌려줘요</button>
+      <button class="diag-btn" onclick="diagnose(3)">💬 온라인·오프라인에서 욕설·허위사실로 피해를 입었어요</button>
+    </div>
+    <div class="diag-result" id="diag-result"></div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="cases-section">
+  <div class="cases-tabs">
+    <div class="ctab active" onclick="switchTab(0)">
+      <span class="ctab-icon">🛒</span>
+      <span class="ctab-label">중고거래<br>사기</span>
+    </div>
+    <div class="ctab" onclick="switchTab(1)">
+      <span class="ctab-icon">💼</span>
+      <span class="ctab-label">임금<br>체불</span>
+    </div>
+    <div class="ctab" onclick="switchTab(2)">
+      <span class="ctab-icon">🏠</span>
+      <span class="ctab-label">전세보증금<br>미반환</span>
+    </div>
+    <div class="ctab" onclick="switchTab(3)">
+      <span class="ctab-icon">💬</span>
+      <span class="ctab-label">모욕·<br>명예훼손</span>
+    </div>
+  </div>
+
+  <!-- ===== CASE 1: 중고거래 ===== -->
+  <div class="panel active" id="panel-0">
+    <div class="case-hero" style="background:linear-gradient(135deg,#0c1a35,#1a3460)">
+      <div class="case-hero-tag">CASE 01</div>
+      <div class="case-hero-title">중고거래 사기</div>
+      <div class="case-hero-sub">입금했는데 물건이 안 왔거나, 연락이 두절됐을 때</div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-lbl"><span>📋 대응 진행도</span><span id="p0t">0 / 5 단계</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="p0f"></div></div>
+    </div>
+    <div class="sec-ttl">내 상황 체크리스트</div>
+    <div class="chklist">
+      <h3>해당 항목을 체크해보세요</h3>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>입금 후 물건이 오지 않는다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>판매자가 갑자기 연락을 끊거나 차단했다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>운송장을 줬는데 배송 조회가 안 된다 (가짜 운송장)</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>받은 물건이 설명과 완전히 다르다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>환불을 요청했으나 무시하거나 잠수 탔다</span></label>
+    </div>
+    <div class="sec-ttl">단계별 대응 가이드</div>
+    <div class="steps" id="s0">
+      <div class="sc open" onclick="toggleStep(this,0)">
+        <div class="sh"><div class="sn" style="background:#e85d26">1</div><div class="sw"><div class="st">증거 수집 — 지금 당장, 제일 먼저</div><div class="ss">상대가 삭제하기 전에 서두르세요</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>모든 법적 대응의 성패는 증거에 달려 있어요. 아래 항목을 전부 캡처·저장하세요.</p>
+          <ul>
+            <li>카카오톡·문자 대화 전체 스크린샷 (날짜·시간이 보이도록)</li>
+            <li>계좌이체 확인증 — 은행 앱 → 거래내역 → 해당 건 캡처</li>
+            <li>판매 게시글 URL 주소창 포함 전체 캡처 (삭제 전에 빨리!)</li>
+            <li>운송장 번호 캡처 + 배송조회 결과 화면 (가짜임을 증명)</li>
+            <li>상대방 계좌번호, 연락처, 닉네임, 프로필 전부 기록</li>
+          </ul>
+          <div class="warn">절대 먼저 "고소하겠다"고 경고하지 마세요. 상대가 게시글·대화를 즉시 삭제합니다. 증거 확보 후에 경고하세요.</div>
+          <div class="tip">캡처는 많을수록 유리해요. 경찰서 가서 가장 먼저 "증거 있어요?"라고 묻습니다.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://www.thecheat.co.kr" target="_blank"><span>더치트 — 사기 계좌·번호 조회</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,0)">
+        <div class="sh"><div class="sn" style="background:#d4860a">2</div><div class="sw"><div class="st">사기 계좌 신고 — 5분 안에 지급정지</div><div class="ss">돈 인출 전에 빠를수록 좋아요</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>상대가 돈을 인출하기 전에 계좌를 묶는 것이 핵심이에요.</p>
+          <ul>
+            <li>경찰청 사이버범죄 신고: ecrm.police.go.kr → 전기통신금융사기 피해신고</li>
+            <li>계좌번호, 피해금액, 상황 입력 → 접수 완료 시 사건번호 캡처</li>
+            <li>금감원 파인(fine.fss.or.kr)에도 추가 신고 가능</li>
+            <li>신고 후 은행에 직접 전화해서 사건번호와 함께 지급정지 요청</li>
+          </ul>
+          <div class="tip">중고거래 사기는 자동 지급정지가 안 될 수 있어요. 경찰서에서 사건사고사실확인원을 발급받아 은행에 제출하면 더 효과적입니다.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecrm.police.go.kr" target="_blank"><span>경찰청 사이버범죄 신고시스템</span></a>
+            <a class="link-btn" href="https://fine.fss.or.kr" target="_blank"><span>금감원 파인 — 사기 계좌 신고</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,0)">
+        <div class="sh"><div class="sn" style="background:#2563b0">3</div><div class="sw"><div class="st">의사 표시 — 내용증명 또는 카톡</div><div class="ss">주소 몰라도 카톡으로 대체 가능</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>중고거래 사기의 현실: 상대 주소를 모르면 내용증명 발송이 불가해요.</p>
+          <div class="route-box">
+            <div class="route hl"><h4>주소 모를 때 <span class="badge-sm">더 흔함</span></h4><p>카카오톡·문자로 "○일까지 환불 안 하면 고소한다"고 명시적으로 발송. 상대가 읽거나 답장하면 법적 의사표시로 효력 인정.</p></div>
+            <div class="route"><h4>주소 알 때</h4><p>우체국 방문 또는 인터넷우체국(epost.go.kr)에서 내용증명 발송. 발신인·수신인 주소 필수.</p></div>
+          </div>
+          <div class="tpl-wrap">
+            <div class="tpl-lbl">카톡/문자 발송 문구 예시</div>
+            <div class="tpl">저는 <span class="fi">날짜</span> <span class="fi">플랫폼</span>에서 <span class="fi">물건명</span>을
+<span class="fi">금액</span>원에 구매하고 입금하였으나
+물건을 수령하지 못하였습니다.
+
+<span class="fi">날짜</span>까지 환불하지 않으면
+사기죄(형법 347조) 형사 고소 및
+민사 소액심판을 청구할 것입니다.</div>
+          </div>
+          <div class="cost-box">
+            <h4>우체국 내용증명 비용 (1매 기준)</h4>
+            <div class="cost-row"><span>수수료+우편+등기</span><span>3,920원</span></div>
+            <div class="cost-row"><span>배달증명 추가 시</span><span>+2,000원</span></div>
+            <div class="cost-row"><span>합계 (권장)</span><span>약 5,920원</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,0)">
+        <div class="sh"><div class="sn" style="background:#1a7a4a">4</div><div class="sw"><div class="st">형사 고소 — 처벌을 요구합니다</div><div class="ss">온라인 접수 가능 · 사기죄 형법 제347조</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>고소장은 온라인으로도 접수 가능해요. 경찰서 방문이 부담스럽다면 온라인부터 시작하세요.</p>
+          <ul>
+            <li>온라인: ecrm.police.go.kr → 고소·고발 접수</li>
+            <li>방문: 가까운 경찰서 민원실 (신분증 + 증거 출력물 지참)</li>
+            <li>고소장 핵심: "처음부터 물건을 줄 의사가 없었다(기망행위)"를 반드시 명시 — 이게 없으면 민사로 처리될 수 있음</li>
+            <li>같은 사기꾼에 당한 피해자가 있다면 집단 고소 → 피해액 합산으로 처벌 강도 UP</li>
+          </ul>
+          <div class="warn">신고(범죄 사실 알림)와 고소(처벌 요구)는 달라요. 반드시 고소로 접수하세요.</div>
+          <div class="tip">더치트(thecheat.co.kr)에서 같은 번호·계좌로 피해를 입은 다른 피해자를 찾을 수 있어요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecrm.police.go.kr" target="_blank"><span>경찰청 — 고소·고발 온라인 접수</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,0)">
+        <div class="sh"><div class="sn" style="background:#7c3aed">5</div><div class="sw"><div class="st">소액심판·배상명령 — 돈을 돌려받습니다</div><div class="ss">변호사 불필요 · 3,000만 원 이하 · 인지대 몇천 원</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>형사 고소로는 처벌만 가능해요. 돈을 실제로 돌려받으려면 민사 절차가 별도로 필요해요.</p>
+          <div class="two-col">
+            <div class="info-card"><h4>소액심판 청구</h4><p>ecfs.scourt.go.kr → 소장작성도우미. 인지대 100만원 기준 약 5,000원. 상대 주소 모르면 소송 후 이동통신사 사실조회로 확인 가능.</p></div>
+            <div class="info-card"><h4>배상명령 제도</h4><p>형사재판 중 민사 배상도 함께 청구. 범인이 유죄판결 받으면 동시에 배상명령 → 별도 소송 없이 돈 받을 수 있음.</p></div>
+          </div>
+          <div class="good">판결 후 강제집행 가능 → 상대방 계좌·재산 압류. 증거(이체내역·카톡)가 명확하면 승소율 높아요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecfs.scourt.go.kr" target="_blank"><span>대법원 전자소송 — 소장작성도우미</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASE 2: 임금체불 ===== -->
+  <div class="panel" id="panel-1">
+    <div class="case-hero" style="background:linear-gradient(135deg,#0a2e1a,#1a4a2e)">
+      <div class="case-hero-tag">CASE 02</div>
+      <div class="case-hero-title">임금체불</div>
+      <div class="case-hero-sub">월급, 퇴직금, 수당 등을 받지 못했을 때</div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-lbl"><span>📋 대응 진행도</span><span id="p1t">0 / 5 단계</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="p1f"></div></div>
+    </div>
+    <div class="sec-ttl">임금체불에 해당하는 것들</div>
+    <div class="chklist">
+      <h3>해당 항목을 체크해보세요</h3>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>월급 또는 주급을 정해진 날에 받지 못했다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>퇴직 후 14일 이내에 퇴직금·임금을 못 받았다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>야근수당, 휴일수당, 주휴수당을 받지 못했다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>사장이 "나중에 준다"며 계속 미루고 있다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>근로계약서를 안 썼는데 일한 만큼 못 받았다</span></label>
+    </div>
+
+    <!-- 임금 계산기 -->
+    <div class="sec-ttl">💰 체불 임금 자동 계산기</div>
+    <div class="calc-section">
+      <h4>얼마를 받아야 하는지 계산해보세요</h4>
+      <div class="calc-row">
+        <div class="calc-field"><label>시급 또는 월급 (원)</label><input type="number" id="wage" placeholder="10,030 (2025 최저시급)"></div>
+        <div class="calc-field"><label>임금 종류</label><select id="wage-type"><option value="hourly">시급</option><option value="monthly">월급</option></select></div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-field"><label>체불 기간 (개월)</label><input type="number" id="months" placeholder="예: 3" min="1"></div>
+        <div class="calc-field"><label>주간 근무시간</label><input type="number" id="weekly-hours" placeholder="예: 40" value="40"></div>
+      </div>
+      <button class="calc-btn" onclick="calcWage()">체불 금액 계산하기</button>
+      <div class="calc-result" id="calc-result">
+        <div class="calc-result-row"><span>기본 체불 임금</span><span id="cr-base">-</span></div>
+        <div class="calc-result-row"><span>주휴수당 포함</span><span id="cr-juhyu">-</span></div>
+        <div class="calc-result-row"><span>연 20% 지연이자 (1년)</span><span id="cr-interest">-</span></div>
+        <div class="calc-result-row"><span>총 청구 가능 금액</span><span id="cr-total">-</span></div>
+      </div>
+    </div>
+
+    <div class="sec-ttl">단계별 대응 가이드</div>
+    <div class="steps" id="s1">
+      <div class="sc open" onclick="toggleStep(this,1)">
+        <div class="sh"><div class="sn" style="background:#16a34a">1</div><div class="sw"><div class="st">증거 수집 — 일한 사실을 입증하세요</div><div class="ss">계약서 없어도 괜찮아요</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>근로계약서가 없어도 일한 사실이 증명되면 임금을 청구할 수 있어요.</p>
+          <ul>
+            <li>근로계약서 (있다면)</li>
+            <li>급여통장 내역 — 지금까지 받은 금액·날짜 확인용</li>
+            <li>출퇴근 기록 — 교통카드 내역, 사진, 카카오톡 업무지시 내용</li>
+            <li>임금명세서 또는 급여 관련 문자·카카오톡</li>
+            <li>사업주 인적사항 — 이름, 사업장 주소, 연락처</li>
+          </ul>
+          <div class="tip">계약서 없이 구두로 일했어도 출근해서 지시받고 일했다면 근로계약이 성립해요. 카카오톡 업무지시 내용이 핵심 증거가 됩니다.</div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,1)">
+        <div class="sh"><div class="sn" style="background:#15803d">2</div><div class="sw"><div class="st">체불 금액 확인 — 지연이자까지 청구 가능</div><div class="ss">2025년 개정법 — 재직 중에도 연 20% 지연이자</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>청구할 수 있는 금액의 범위를 먼저 파악하세요.</p>
+          <ul>
+            <li>기본 임금: 계약된 월급 × 미지급 개월 수</li>
+            <li>퇴직금: 1년 이상 근무 시 발생, 퇴직 후 14일 내 미지급이면 체불</li>
+            <li>연장·야간·휴일 수당: 통상임금의 50% 가산 지급 의무</li>
+            <li>주휴수당: 주 15시간 이상 근무 시 유급 주 1회 휴일 수당</li>
+          </ul>
+          <div class="good">2025년 10월 23일부터 법 개정으로 재직 중인 근로자도 체불 임금에 연 20% 지연이자 청구 가능. 퇴직 후 15일부터도 연 20% 적용. 명백한 고의 체불이라면 최대 3배 징벌적 손해배상도 가능.</div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,1)">
+        <div class="sh"><div class="sn" style="background:#166534">3</div><div class="sw"><div class="st">고용노동부 진정 — 첫 번째 공식 대응</div><div class="ss">온라인 접수 · 25일 내 처리</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>노동청 진정은 임금을 받게 해달라는 행정적 요청이에요. 처벌이 아닌 해결을 목적으로 해요.</p>
+          <ul>
+            <li>온라인: 고용노동부 노동포털 labor.moel.go.kr → 민원신청 → 진정서(임금체불)</li>
+            <li>방문: 사업장 소재지 관할 지방고용노동청</li>
+            <li>처리기간: 25일 이내 (1회 연장 가능)</li>
+            <li>진정서에 "미지급 시 처벌을 요구한다"는 문구 포함 권장</li>
+          </ul>
+          <div class="tip">월평균 임금 400만 원 이하라면 대한법률구조공단에서 민사소송을 무료로 지원받을 수 있어요. (국번없이 132)</div>
+          <div class="warn">출석 요구를 2회 이상 무시하면 신고의사 없음으로 종결됩니다. 반드시 응하세요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://labor.moel.go.kr" target="_blank"><span>고용노동부 노동포털 — 진정서 접수</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,1)">
+        <div class="sh"><div class="sn" style="background:#14532d">4</div><div class="sw"><div class="st">형사 고소 — 처벌로 압박합니다</div><div class="ss">3년 이하 징역 또는 3,000만 원 이하 벌금</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>진정으로 해결이 안 되거나, 강하게 압박하고 싶다면 고소를 선택하세요.</p>
+          <ul>
+            <li>노동포털에서 진정 대신 고소로 접수하거나, 진정 처리 후 고소로 전환 가능</li>
+            <li>임금체불 사업주: 근로기준법 위반으로 3년 이하 징역 또는 3,000만 원 이하 벌금</li>
+            <li>노동청에서 체불임금 확인서 발급받아 민사소송에 활용 가능</li>
+          </ul>
+          <div class="good">사업주가 망하거나 잠적해도 걱정 마세요. 근로복지공단 대지급금 제도로 체불임금 일부를 국가에서 대신 지급받을 수 있어요. 간이대지급금 최대 1,000만 원, 도산대지급금 최대 2,100만 원.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://www.kcomwel.or.kr" target="_blank"><span>근로복지공단 — 대지급금 신청</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,1)">
+        <div class="sh"><div class="sn" style="background:#0f3a1e">5</div><div class="sw"><div class="st">민사 소송 — 임금을 실제로 받아냅니다</div><div class="ss">임금채권 소멸시효 3년 — 반드시 기한 내에!</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>노동청 해결이 어렵거나 지연이자까지 받으려면 민사 소송이 필요해요.</p>
+          <ul>
+            <li>지급명령 신청: 법원에서 서류만으로 빠르게 집행권원 확보</li>
+            <li>소액심판: 3,000만 원 이하 체불 시 전자소송(ecfs.scourt.go.kr)으로 접수</li>
+            <li>판결 후 강제집행: 사업장 재산·계좌·거래처 채권 압류 가능</li>
+          </ul>
+          <div class="warn">임금채권 소멸시효는 3년이에요. 노동청 진정만으로는 시효가 중단되지 않습니다. 3년이 지나기 전에 반드시 소송을 제기하세요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecfs.scourt.go.kr" target="_blank"><span>대법원 전자소송 — 소액심판 접수</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASE 3: 전세보증금 ===== -->
+  <div class="panel" id="panel-2">
+    <div class="case-hero" style="background:linear-gradient(135deg,#1a0a35,#2a1a5c)">
+      <div class="case-hero-tag">CASE 03</div>
+      <div class="case-hero-title">전세보증금 미반환</div>
+      <div class="case-hero-sub">계약이 끝났는데 집주인이 보증금을 안 돌려줄 때</div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-lbl"><span>📋 대응 진행도</span><span id="p2t">0 / 4 단계</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="p2f"></div></div>
+    </div>
+    <div class="sec-ttl">먼저 확인하세요</div>
+    <div class="chklist">
+      <h3>내 권리 보호 상태 체크</h3>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>전입신고를 했다 (대항력 확보)</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>확정일자를 받아놨다 (우선변제권 확보)</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>계약 만료 2개월 전에 갱신 거절 통보를 했다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>계약 만료 후에도 보증금을 받지 못하고 있다</span></label>
+    </div>
+    <div class="sec-ttl">단계별 대응 가이드</div>
+    <div class="steps" id="s2">
+      <div class="sc open" onclick="toggleStep(this,2)">
+        <div class="sh"><div class="sn" style="background:#7c3aed">1</div><div class="sw"><div class="st">내용증명 발송 — 공식 반환 요청</div><div class="ss">집주인 주소는 이미 알고 있어요</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>전세 계약의 좋은 점: 집주인 주소(임대 주택 주소)는 이미 알고 있어요. 바로 내용증명 발송이 가능합니다.</p>
+          <div class="tpl-wrap">
+            <div class="tpl-lbl">내용증명 문구 예시</div>
+            <div class="tpl">발신인: <span class="fi">임차인 이름</span> (<span class="fi">연락처</span>)
+수신인: <span class="fi">임대인 이름</span>
+주소: <span class="fi">임대 주택 주소</span>
+
+본인은 위 주소 소재 주택에 관하여 <span class="fi">계약일</span>부터
+<span class="fi">만료일</span>까지 임대차 계약을 체결하고
+보증금 <span class="fi">금액</span>원을 지급한 임차인입니다.
+
+위 계약은 <span class="fi">만료일</span>에 종료되었으나
+현재까지 보증금이 반환되지 않고 있습니다.
+
+<span class="fi">날짜</span>까지 보증금 전액을 반환하지 않을 경우
+임차권등기명령 신청 및 보증금 반환 청구 소송을
+제기할 것임을 알려드립니다.
+
+<span class="fi">날짜</span>  발신인: <span class="fi">이름</span> (서명)</div>
+          </div>
+          <div class="warn">계약 만료 2개월 전에 갱신 거절을 안 했다면 묵시적 갱신이 될 수 있어요. 지금이라도 서면으로 갱신 거절 의사를 남기세요.</div>
+          <div class="tip">집주인이 연락 두절이라도 임대 주택 주소로 발송하면 돼요. 폐문부재로 반송돼도 발송 의무를 다한 것으로 인정됩니다.</div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,2)">
+        <div class="sh"><div class="sn" style="background:#6d28d9">2</div><div class="sw"><div class="st">임차권등기명령 — 이사 전 반드시!</div><div class="ss">이사 가도 대항력·우선변제권 유지</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>이사를 가야 하는데 보증금을 못 받은 상황이라면 임차권등기명령이 필수예요. 이사 후 전출하면 대항력이 사라져요.</p>
+          <ul>
+            <li>신청: 임차주택 소재지 관할 법원 (계약 만료 다음 날부터 신청 가능)</li>
+            <li>필요 서류: 임대차계약서, 등기사항증명서, 주민등록등본, 확정일자 사본</li>
+            <li>등기 완료 후 이사·전출해도 대항력·우선변제권 유지됨</li>
+          </ul>
+          <div class="warn">임차권등기 없이 먼저 이사하면 경매 시 보증금 회수 순위가 밀립니다. 반드시 등기 완료 후 이사하세요.</div>
+          <div class="good">임차권등기명령이 완료되면 집주인에게 강한 심리적 압박이 돼요. 이 단계에서 집주인이 보증금을 돌려주는 경우도 많습니다.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecfs.scourt.go.kr" target="_blank"><span>대법원 전자소송 — 임차권등기명령 신청</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,2)">
+        <div class="sh"><div class="sn" style="background:#5b21b6">3</div><div class="sw"><div class="st">지급명령 신청 — 빠르고 저렴하게</div><div class="ss">서류만으로 집행권원 확보</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>집주인이 보증금 반환 의무는 인정하는데 안 주는 경우에 효과적이에요.</p>
+          <ul>
+            <li>신청: 대법원 전자소송(ecfs.scourt.go.kr) → 지급명령 신청</li>
+            <li>준비: 임대차계약서, 보증금 지급 내역, 해지 통보 내역, 임차권등기 완료 서류</li>
+            <li>법원이 서류 심사 → 집주인에게 송달 → 2주 내 이의 없으면 확정</li>
+            <li>확정 후 강제집행: 집주인 부동산·예금·채권 압류</li>
+          </ul>
+          <div class="tip">지급명령은 대부분 2~3개월 내 결과를 얻는 가장 빠른 방법이에요.</div>
+          <div class="warn">집주인이 이의신청하면 정식 소송으로 넘어가요. 이 경우 법률구조공단 무료 지원을 이용하세요. (132)</div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,2)">
+        <div class="sh"><div class="sn" style="background:#4c1d95">4</div><div class="sw"><div class="st">보증금 반환 소송 — 최후의 수단</div><div class="ss">지연이자·손해배상까지 함께 청구</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>지급명령에 이의가 들어오거나 집주인이 끝까지 버티면 정식 소송을 진행해요.</p>
+          <ul>
+            <li>대법원 전자소송 또는 관할 법원 접수</li>
+            <li>보증금 + 지연손해금(연 5% 법정이자) 함께 청구</li>
+            <li>법률구조공단(132) 무료 소송 지원 가능</li>
+            <li>승소 후 강제집행: 부동산 경매, 예금 압류, 채권 추심</li>
+          </ul>
+          <div class="good">HUG(주택도시보증공사) 전세보증보험에 가입했다면 소송 없이 보증 이행 청구만으로 보증금을 먼저 받을 수 있어요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://www.khug.or.kr" target="_blank"><span>HUG 주택도시보증공사 — 보증보험 이행 청구</span></a>
+            <a class="link-btn" href="https://www.klac.or.kr" target="_blank"><span>대한법률구조공단 — 무료 소송 지원</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASE 4: 모욕/명예훼손 ===== -->
+  <div class="panel" id="panel-3">
+    <div class="case-hero" style="background:linear-gradient(135deg,#2a0a0a,#4a1a1a)">
+      <div class="case-hero-tag">CASE 04</div>
+      <div class="case-hero-title">모욕·명예훼손</div>
+      <div class="case-hero-sub">온라인·오프라인에서 욕설, 허위사실 유포 등 피해를 입었을 때</div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-lbl"><span>📋 대응 진행도</span><span id="p3t">0 / 4 단계</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="p3f"></div></div>
+    </div>
+    <div class="sec-ttl">먼저 구분하세요</div>
+    <div class="two-col" style="margin-bottom:16px">
+      <div class="info-card"><h4>모욕죄 (형법 311조)</h4><p>사실 근거 없이 경멸·비하하는 표현. 1년 이하 징역 또는 200만 원 이하 벌금. 친고죄 — 피해자가 직접 고소해야 함.</p></div>
+      <div class="info-card"><h4>명예훼손죄 (정보통신망법)</h4><p>온라인 허위사실 유포 시 최대 7년 이하 징역 또는 5,000만 원 이하 벌금. 반의사불벌죄 — 합의 시 처벌 불가.</p></div>
+    </div>
+    <div class="chklist">
+      <h3>해당 항목을 체크해보세요</h3>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>불특정 다수가 볼 수 있는 공간에서 욕설·비하 발언을 들었다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>온라인 커뮤니티·SNS에 나에 대한 허위사실이 게시됐다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>단체 카카오톡방·오픈채팅에서 모욕적인 발언을 들었다</span></label>
+      <label class="ci"><input type="checkbox" onchange="this.closest('.ci').classList.toggle('done',this.checked)"><span>게시물을 삭제해달라고 했는데 무시한다</span></label>
+    </div>
+    <div class="sec-ttl">단계별 대응 가이드</div>
+    <div class="steps" id="s3">
+      <div class="sc open" onclick="toggleStep(this,3)">
+        <div class="sh"><div class="sn" style="background:#e85d26">1</div><div class="sw"><div class="st">증거 수집 — 삭제 전에 지금 당장</div><div class="ss">캡처 방법이 틀리면 증거 효력이 없어요</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>온라인 게시물은 언제든 삭제될 수 있어요. 지금 바로 저장하세요.</p>
+          <ul>
+            <li>화면 전체 캡처 — URL 주소창, 작성자 아이디, 작성 날짜·시간이 반드시 보여야 함</li>
+            <li>게시물 URL 저장 (주소창 복사)</li>
+            <li>웹 아카이브 저장: web.archive.org 에서 URL 입력해 보존</li>
+            <li>플랫폼 고객센터에 "게시물 보존 요청" 신청 가능</li>
+            <li>제3자 목격자가 있다면 진술서 확보</li>
+          </ul>
+          <div class="warn">절대로 맞대응 댓글을 달지 마세요. 쌍방 고소로 이어질 수 있어요. 고소 예고도 증거 확보 전에는 하지 마세요.</div>
+          <div class="tip">삭제된 게시물도 수사기관이 플랫폼에 자료 요청하면 복원 가능한 경우가 많아요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://web.archive.org" target="_blank"><span>웹 아카이브 — 게시물 영구 보존</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,3)">
+        <div class="sh"><div class="sn" style="background:#dc2626">2</div><div class="sw"><div class="st">게시물 삭제 요청 — 빠른 피해 차단</div><div class="ss">형사 고소와 별개로 동시 진행 가능</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>처벌과 별개로, 게시물 자체를 빨리 삭제하는 것도 중요해요.</p>
+          <ul>
+            <li>플랫폼 신고 기능: 각 사이트·앱의 신고 버튼으로 삭제 요청</li>
+            <li>방통심의위 신청: 방송통신심의위원회(kocsc.or.kr) → 권리침해정보 심의 신청</li>
+            <li>방통심의위는 고소보다 빠르게 처리되는 경우가 많아요</li>
+          </ul>
+          <div class="tip">방통심의위로 게시물 삭제 + 경찰에 고소를 동시에 진행하는 투트랙 전략이 가장 효과적이에요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://www.kocsc.or.kr" target="_blank"><span>방송통신심의위원회 — 게시물 삭제 신청</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,3)">
+        <div class="sh"><div class="sn" style="background:#b91c1c">3</div><div class="sw"><div class="st">형사 고소 — 처벌을 요구합니다</div><div class="ss">모욕죄 공소시효 1년 · 명예훼손 7년</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>모욕죄·명예훼손죄 고소 절차예요.</p>
+          <ul>
+            <li>가까운 경찰서 사이버수사팀 또는 ecrm.police.go.kr 온라인 접수</li>
+            <li>고소장 필수: 피해 일시·장소, 피해 내용, 증거 목록 (번호 매겨서 첨부)</li>
+            <li>정신적 피해가 크다면 정신건강의학과 진단서 첨부하면 유리</li>
+            <li>익명 작성자라도 경찰이 IP·계정 추적으로 특정 가능</li>
+          </ul>
+          <div class="good">모욕죄는 친고죄라서 고소 후 합의금을 받고 취하하는 방식이 일반적이에요. 처벌보다 합의금 목적이라면 고소 후 협상하세요.</div>
+          <div class="warn">모욕죄 공소시효 1년, 명예훼손죄 7년. 특히 모욕죄는 기간이 짧으니 빨리 고소하세요.</div>
+        </div>
+      </div>
+      <div class="sc" onclick="toggleStep(this,3)">
+        <div class="sh"><div class="sn" style="background:#991b1b">4</div><div class="sw"><div class="st">민사 손해배상 — 금전 피해 보전</div><div class="ss">정신적 피해 위자료 청구 가능</div></div><span class="arr">›</span></div>
+        <div class="sb">
+          <p>형사 처벌과 별개로 민사로 손해배상을 청구할 수 있어요.</p>
+          <ul>
+            <li>위자료(정신적 피해 보상) 청구: 법원에 손해배상 소장 제출</li>
+            <li>피해 정도, 게시물 확산 범위, 정신적 고통 입증이 중요</li>
+            <li>소액심판(3,000만 원 이하): ecfs.scourt.go.kr에서 셀프 접수 가능</li>
+          </ul>
+          <div class="tip">명예훼손으로 온라인에서 허위사실이 퍼졌다면 반박 게시물 작성 등 명예 회복 조치도 병행하세요.</div>
+          <div class="links-box">
+            <a class="link-btn" href="https://ecfs.scourt.go.kr" target="_blank"><span>대법원 전자소송 — 손해배상 소장 접수</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS CASES -->
+  <div class="cases-stories">
+    <h2>📖 실제 성공 사례</h2>
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="story-tag" style="background:#fee2e2;color:#991b1b">중고거래 사기</div>
+        <p>번개장터에서 15만원 에어팟 사기. 경찰 고소 + 소액심판으로 4개월 만에 전액 환불.</p>
+        <div class="story-result">✓ 15만원 전액 회수</div>
+        <div class="story-who">20대 직장인 (익명)</div>
+      </div>
+      <div class="story-card">
+        <div class="story-tag" style="background:#dcfce7;color:#166534">임금체불</div>
+        <p>3개월치 월급 240만원 체불. 노동포털 진정 후 2주 만에 사업주가 전액 입금.</p>
+        <div class="story-result">✓ 240만원 + 지연이자 수령</div>
+        <div class="story-who">30대 알바생 (익명)</div>
+      </div>
+      <div class="story-card">
+        <div class="story-tag" style="background:#ede9fe;color:#5b21b6">전세보증금</div>
+        <p>임차권등기명령 신청 후 집주인이 일주일 만에 보증금 4,500만원 반환.</p>
+        <div class="story-result">✓ 4,500만원 전액 회수</div>
+        <div class="story-who">20대 직장인 (익명)</div>
+      </div>
+      <div class="story-card">
+        <div class="story-tag" style="background:#fef3c7;color:#92400e">명예훼손</div>
+        <p>온라인 커뮤니티 허위사실 게시물. 방통심의위 신청 + 고소 후 합의금 200만원 수령.</p>
+        <div class="story-result">✓ 게시물 삭제 + 합의금 200만원</div>
+        <div class="story-who">30대 자영업자 (익명)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAWYER CHECKER -->
+<section id="lawyer-check" class="cases-section" style="padding-top:0;padding-bottom:0">
+  <div class="lawyer-checker">
+    <h2>⚖️ 변호사가 필요한지 진단해드려요</h2>
+    <p class="lawyer-checker-sub">피해 상황을 입력하면 셀프 대응 / 법률구조공단 / 변호사 선임 중 어떤 방법이 가장 적합한지 알려드려요.</p>
+    <div class="lc-grid">
+      <div class="lc-field">
+        <label>피해 금액 (원)</label>
+        <input type="number" id="lc-amount" placeholder="예: 500000">
+      </div>
+      <div class="lc-field">
+        <label>사건 유형</label>
+        <select id="lc-type">
+          <option value="0">중고거래 사기</option>
+          <option value="1">임금체불</option>
+          <option value="2">전세보증금</option>
+          <option value="3">모욕·명예훼손</option>
+        </select>
+      </div>
+      <div class="lc-field">
+        <label>월 소득 (원, 대략)</label>
+        <input type="number" id="lc-income" placeholder="예: 3000000">
+      </div>
+      <div class="lc-field">
+        <label>셀프 대응 이미 시도했나요?</label>
+        <select id="lc-tried">
+          <option value="0">아직 안 해봤어요</option>
+          <option value="1">해봤는데 해결 안 됐어요</option>
+        </select>
+      </div>
+    </div>
+    <p style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:10px">해당하는 항목을 체크해주세요</p>
+    <div class="lc-checks">
+      <div class="lc-check"><input type="checkbox" id="lc-c1"><label for="lc-c1">상대방 신원(이름·주소)을 전혀 모른다</label></div>
+      <div class="lc-check"><input type="checkbox" id="lc-c2"><label for="lc-c2">상대방도 변호사를 선임했다</label></div>
+      <div class="lc-check"><input type="checkbox" id="lc-c3"><label for="lc-c3">사실관계가 복잡하거나 증거가 불명확하다</label></div>
+      <div class="lc-check"><input type="checkbox" id="lc-c4"><label for="lc-c4">사업체가 도산했거나 사업주가 잠적했다</label></div>
+    </div>
+    <button class="lc-btn" onclick="checkLawyer()">진단하기</button>
+    <div class="lc-result" id="lc-result"></div>
+  </div>
+</section>
+
+<!-- DOCUMENT GENERATOR -->
+<section id="doc-gen" class="cases-section" style="padding-top:0">
+  <div class="doc-gen">
+    <h2>📄 법률 문서 작성 도우미 <span class="price-tag">베타 기간 무료</span></h2>
+    <p class="doc-gen-sub">상황을 입력하면 AI가 문서 초안을 만들어드려요. 생성된 초안은 반드시 내용을 검토 후 제출하세요. 법률 자문이 아닌 참고용 초안입니다.</p>
+    <div class="doc-tabs">
+      <div class="doc-tab active" onclick="switchDocTab(0)">내용증명 (중고거래)</div>
+      <div class="doc-tab" onclick="switchDocTab(1)">내용증명 (전세보증금)</div>
+      <div class="doc-tab" onclick="switchDocTab(2)">고소장</div>
+      <div class="doc-tab" onclick="switchDocTab(3)">노동청 진정서</div>
+    </div>
+
+    <!-- 내용증명 폼 — 중고거래 -->
+    <div class="doc-form active" id="df-0">
+      <div class="form-grid">
+        <div class="field"><label>발신인 이름</label><input id="d0-myname" placeholder="홍길동"></div>
+        <div class="field"><label>발신인 연락처</label><input id="d0-myphone" placeholder="010-1234-5678"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>발신인 주소</label><input id="d0-myaddr" placeholder="서울시 강남구 테헤란로 123"></div>
+        <div class="field"><label>수신인 이름·닉네임</label><input id="d0-theirname" placeholder="홍판매 또는 닉네임"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>수신인 주소 (모르면 공란)</label><input id="d0-theiraddr" placeholder="모를 경우 카톡 발송으로 대체"></div>
+        <div class="field"><label>거래 플랫폼</label>
+          <select id="d0-platform"><option>당근마켓</option><option>번개장터</option><option>중고나라</option><option>직거래</option><option>기타</option></select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>거래 날짜</label>
+          <div style="display:flex;gap:4px">
+            <select id="d0-year" style="flex:2;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d0-month" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d0-day" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+          </div>
+        </div>
+        <div class="field"><label>피해 금액 (원)</label><input type="number" id="d0-amount" placeholder="150000"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>물건명</label><input id="d0-item" placeholder="아이폰 15 Pro 256GB"></div>
+        <div class="field"><label>환불 요청 기한</label>
+          <select id="d0-deadline"><option value="3">3일</option><option value="5">5일</option><option value="7" selected>7일</option><option value="10">10일</option><option value="14">14일</option></select>
+        </div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>피해 상황 (구체적으로)</label><textarea id="d0-situation" placeholder="입금 후 운송장을 보내줬는데 가짜였고, 이후 연락이 두절됐습니다. 3일간 카톡 읽씹 후 차단당했어요."></textarea></div>
+      </div>
+      <button class="gen-btn" id="genbtn-0" onclick="generateDoc(0)">내용증명 초안 생성하기 (중고거래)</button>
+    </div>
+
+    <!-- 내용증명 폼 — 전세보증금 -->
+    <div class="doc-form" id="df-1">
+      <div class="form-grid">
+        <div class="field"><label>임차인 이름 (본인)</label><input id="d3-myname" placeholder="홍길동"></div>
+        <div class="field"><label>임차인 연락처</label><input id="d3-myphone" placeholder="010-1234-5678"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>임차인 현재 주소</label><input id="d3-myaddr" placeholder="서울시 강남구 테헤란로 123 (거주 중인 주소)"></div>
+        <div class="field"><label>임대인 이름 (집주인)</label><input id="d3-theirname" placeholder="김집주인"></div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>임대 주택 주소 (수신인 주소)</label><input id="d3-houseaddr" placeholder="서울시 마포구 와우산로 123 101호"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>보증금 금액 (원)</label><input type="number" id="d3-deposit" placeholder="50000000"></div>
+        <div class="field"><label>임대차 계약 기간</label><input id="d3-period" placeholder="예: 2024년 3월 1일 ~ 2026년 2월 28일"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>계약 만료일</label>
+          <div style="display:flex;gap:4px">
+            <select id="d3-ey" style="flex:2;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d3-em" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+            <select id="d3-ed" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)"></select>
+          </div>
+        </div>
+        <div class="field"><label>반환 요청 기한</label>
+          <select id="d3-deadline"><option value="7">7일</option><option value="10">10일</option><option value="14" selected>14일</option><option value="30">30일</option></select>
+        </div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>추가 상황 (선택)</label><textarea id="d3-situation" placeholder="예: 여러 차례 반환 요청을 했으나 집주인이 계속 미루고 있습니다. 현재 새 거주지로 이사가 필요한 상황입니다."></textarea></div>
+      </div>
+      <button class="gen-btn" id="genbtn-1" onclick="generateDoc(1)">내용증명 초안 생성하기 (전세보증금)</button>
+    </div>
+
+    <!-- 고소장 폼 -->
+    <div class="doc-form" id="df-2">
+      <div class="form-grid">
+        <div class="field"><label>고소인 이름</label><input id="d1-myname" placeholder="홍길동"></div>
+        <div class="field"><label>고소인 주민번호 앞자리</label><input id="d1-myid" placeholder="901234 (생략 가능)"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>고소인 주소</label><input id="d1-myaddr" placeholder="서울시 강남구 테헤란로 123"></div>
+        <div class="field"><label>고소인 연락처</label><input id="d1-myphone" placeholder="010-1234-5678"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>피고소인 이름·닉네임</label><input id="d1-theirname" placeholder="알 수 없는 경우 닉네임 기재"></div>
+        <div class="field"><label>피고소인 계좌·연락처</label><input id="d1-theircontact" placeholder="알고 있는 정보 기재"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>사건 유형</label>
+          <select id="d1-type"><option>중고거래 사기</option><option>임금체불</option><option>모욕</option><option>명예훼손</option><option>기타</option></select>
+        </div>
+        <div class="field"><label>피해 금액 (원)</label><input type="number" id="d1-amount" placeholder="150000"></div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>피해 경위 (구체적·시간순으로)</label><textarea id="d1-situation" placeholder="언제, 어디서, 어떻게 피해를 입었는지 시간 순서대로 작성해주세요."></textarea></div>
+      </div>
+      <button class="gen-btn" id="genbtn-2" onclick="generateDoc(2)">고소장 초안 생성하기</button>
+    </div>
+
+    <!-- 노동청 진정서 폼 -->
+    <div class="doc-form" id="df-3">
+      <div class="form-grid">
+        <div class="field"><label>진정인(근로자) 이름</label><input id="d2-myname" placeholder="홍길동"></div>
+        <div class="field"><label>연락처</label><input id="d2-myphone" placeholder="010-1234-5678"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>피진정인(사업주) 이름</label><input id="d2-bossname" placeholder="김사장"></div>
+        <div class="field"><label>사업장명</label><input id="d2-company" placeholder="○○ 편의점"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>근무 시작일</label>
+          <div style="display:flex;gap:4px">
+            <select id="d2-sy" style="flex:2;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+            <select id="d2-sm" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+            <select id="d2-sd" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+          </div>
+        </div>
+        <div class="field"><label>근무 종료일</label>
+          <div style="display:flex;gap:4px">
+            <select id="d2-ey" style="flex:2;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+            <select id="d2-em" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+            <select id="d2-ed" style="flex:1.5;padding:9px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:var(--bg);color:var(--text)"></select>
+          </div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>체불 금액 (원)</label><input type="number" id="d2-amount" placeholder="1500000"></div>
+      </div>
+      <div class="form-grid full">
+        <div class="field"><label>체불 내용 (구체적으로)</label><textarea id="d2-situation" placeholder="월급 300만원을 3개월째 지급하지 않고 있습니다. 여러 번 요청했으나 '다음 달에 준다'며 미루고 있어요."></textarea></div>
+      </div>
+      <button class="gen-btn" id="genbtn-3" onclick="generateDoc(3)">진정서 초안 생성하기</button>
+    </div>
+
+    <div class="loading" id="doc-loading" style="display:none">
+      AI가 문서를 작성 중입니다<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+    </div>
+    <div class="doc-output" id="doc-output">
+      <div class="doc-output-head">
+        <h3 id="doc-output-title">생성된 문서 초안</h3>
+        <button class="copy-btn" onclick="copyDoc()">복사하기</button>
+      </div>
+      <div class="doc-text" id="doc-text"></div>
+      <div class="tip" style="margin-top:12px">A4 용지에 출력 후 검토하세요. 노란 채우기 부분이 있다면 실제 정보로 수정 후 제출하세요.</div>
+      <button class="regen-btn" onclick="regenDoc()">다시 생성하기</button>
+    </div>
+    <div class="err-box" id="doc-err"></div>
+  </div>
+</section>
+
+<!-- URGENT ACTION SECTION -->
+<section id="deadline" class="cases-section" style="padding-top:0">
+  <div class="deadline-section">
+    <h2>🚨 지금 당장 해야 할 일</h2>
+    <p>피해를 입었다면 시간이 지날수록 불리해요. 지금 바로 시작하세요.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="dl-item" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;width:100%">
+          <span style="font-size:20px">📸</span>
+          <div style="flex:1"><div class="dl-name">지금 즉시 — 증거 캡처</div><div class="dl-sub">게시글·대화·이체내역 전부. 상대가 삭제하면 끝이에요.</div></div>
+          <span style="font-size:11px;color:#e85d26;font-weight:700">최우선</span>
+        </div>
+      </div>
+      <div class="dl-item" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;width:100%">
+          <span style="font-size:20px">🚫</span>
+          <div style="flex:1"><div class="dl-name">고소 예고 전 — 증거 먼저</div><div class="dl-sub">상대에게 "고소하겠다"고 말하기 전에 증거부터 확보하세요.</div></div>
+          <span style="font-size:11px;color:#e85d26;font-weight:700">중요</span>
+        </div>
+      </div>
+      <div class="dl-item" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;width:100%">
+          <span style="font-size:20px">📝</span>
+          <div style="flex:1"><div class="dl-name">오늘 중 — 내용증명 또는 의사표시</div><div class="dl-sub">카카오톡으로라도 "환불 요청" 문자를 남겨두세요. 법적 증거가 됩니다.</div></div>
+          <span style="font-size:11px;color:#d4860a;font-weight:700">당일</span>
+        </div>
+      </div>
+      <div class="dl-item" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;width:100%">
+          <span style="font-size:20px">🚔</span>
+          <div style="flex:1"><div class="dl-name">이번 주 안 — 경찰 신고·고소</div><div class="dl-sub">사기 계좌 지급정지 신청, 고소장 접수. 온라인으로 가능해요.</div></div>
+          <span style="font-size:11px;color:#2563b0;font-weight:700">이번 주</span>
+        </div>
+      </div>
+      <div class="dl-item" style="flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px;width:100%">
+          <span style="font-size:20px">⚖️</span>
+          <div style="flex:1"><div class="dl-name">이번 달 안 — 소액심판·진정서 제출</div><div class="dl-sub">돈을 실제로 돌려받으려면 민사 절차도 병행하세요.</div></div>
+          <span style="font-size:11px;color:#7c3aed;font-weight:700">이번 달</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kakao-cta">
+    <h2>📬 새 케이스 추가 알림 받기</h2>
+    <p>소비자 분쟁, 이혼, 상속 등 새 케이스가 추가되면 먼저 알려드려요.</p>
+    <div class="email-form">
+      <input type="email" id="email-input" placeholder="이메일 주소 입력">
+      <button onclick="submitEmail()">알림 신청</button>
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:10px">* 스팸 없음 · 언제든 해지 가능</p>
+  </div>
+</section>
+
+<!-- NEXT STEP MODAL -->
+<div class="next-step-overlay" id="next-step-overlay">
+  <div class="next-step-modal">
+    <button class="ns-close" onclick="closeNextStep()">✕</button>
+    <div class="ns-title" id="ns-title">문서가 생성됐어요!</div>
+    <p class="ns-sub">다음 단계를 확인하고 바로 행동하세요.</p>
+
+    <div class="print-guide">
+      <h4>🖨️ 출력 및 제출 가이드</h4>
+      <div class="print-step"><div class="print-num">1</div><div>생성된 문서를 <strong>A4 용지에 3부 출력</strong>하세요 (원본 1부 + 등본 2부)</div></div>
+      <div class="print-step"><div class="print-num">2</div><div>노란 채우기 칸이 있다면 <strong>실제 정보로 수정</strong> 후 출력하세요</div></div>
+      <div class="print-step"><div class="print-num">3</div><div><strong>우체국 방문</strong> — 신분증 지참, "내용증명 발송 부탁드립니다" 말하면 돼요</div></div>
+      <div class="print-step"><div class="print-num">4</div><div>발송 영수증 <strong>반드시 보관</strong> — 나중에 증거로 씁니다</div></div>
+      <div class="print-step"><div class="print-num">5</div><div>배달증명(+2,000원) 추가하면 <strong>상대방 수령 확인</strong> 가능 (권장)</div></div>
+    </div>
+
+    <div class="ns-steps" id="ns-steps"></div>
+
+    <div class="ns-disclaimer">
+      ⚠ 이 문서는 사용자가 입력한 정보를 기반으로 생성된 참고용 초안입니다. 법률 자문이 아니며, 제출 전 내용의 정확성을 반드시 직접 검토하세요. 잘못된 정보가 포함된 경우 수정 후 사용하세요.
+    </div>
+    <button class="ns-close-btn" onclick="closeNextStep()">확인했어요</button>
+  </div>
+</div>
+
+<footer>
+  <strong>억울하지 않게</strong><br>
+  본 서비스는 법률 자문이 아닌 정보 제공을 목적으로 합니다. 개별 사건의 구체적인 법률 판단은 전문 변호사에게 문의하시기 바랍니다.<br>
+  본 서비스는 "법률 문서 작성 도우미"이며, 법률 상담·자문·대리 서비스가 아닙니다.<br>
+  문의: <a href="mailto:thomas0401lulu@gmail.com">thomas0401lulu@gmail.com</a> &nbsp;|&nbsp;
+  <a href="#" onclick="openModal('terms');return false;">이용약관</a> &nbsp;|&nbsp;
+  <a href="#" onclick="openModal('privacy');return false;">개인정보처리방침</a><br>
+  © 2026 억울하지 않게. All rights reserved.
+</footer>
+
+<script>
+// 오늘 날짜 세팅
+const today = new Date().toISOString().split('T')[0];
+const nowY = new Date().getFullYear();
+const nowM = new Date().getMonth() + 1;
+const nowD = new Date().getDate();
+
+// 한국어 날짜 셀렉트 초기화
+function initDateSelects(yId, mId, dId) {
+  const yEl = document.getElementById(yId);
+  const mEl = document.getElementById(mId);
+  const dEl = document.getElementById(dId);
+  if (!yEl) return;
+  for (let y = nowY; y >= nowY - 3; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y + '년';
+    if (y === nowY) o.selected = true;
+    yEl.appendChild(o);
+  }
+  for (let m = 1; m <= 12; m++) {
+    const o = document.createElement('option');
+    o.value = String(m).padStart(2,'0'); o.textContent = m + '월';
+    if (m === nowM) o.selected = true;
+    mEl.appendChild(o);
+  }
+  function fillDays() {
+    const y = parseInt(yEl.value), mo = parseInt(mEl.value);
+    const max = new Date(y, mo, 0).getDate();
+    const prev = parseInt(dEl.value) || nowD;
+    dEl.innerHTML = '';
+    for (let d = 1; d <= max; d++) {
+      const o = document.createElement('option');
+      o.value = String(d).padStart(2,'0'); o.textContent = d + '일';
+      if (d === Math.min(prev, max)) o.selected = true;
+      dEl.appendChild(o);
+    }
+  }
+  yEl.addEventListener('change', fillDays);
+  mEl.addEventListener('change', fillDays);
+  fillDays();
+}
+initDateSelects('d0-year','d0-month','d0-day');
+initDateSelects('d2-sy','d2-sm','d2-sd');
+initDateSelects('d2-ey','d2-em','d2-ed');
+initDateSelects('d3-ey','d3-em','d3-ed');
+
+// 날짜 값 가져오기 헬퍼
+function getDateVal(yId, mId, dId) {
+  const y = document.getElementById(yId)?.value || nowY;
+  const m = document.getElementById(mId)?.value || String(nowM).padStart(2,'0');
+  const d = document.getElementById(dId)?.value || String(nowD).padStart(2,'0');
+  return `${y}년 ${parseInt(m)}월 ${parseInt(d)}일`;
+}
+
+// 케이스 탭 → 문서 탭 자동 연동
+// 중고→내용증명(중고), 임금→진정서, 전세→내용증명(전세), 모욕→고소장
+const caseToDocTabMap = [0, 3, 1, 2];
+
+// 상황 진단
+const diagnoseData = [
+  { title: '중고거래 사기에 해당해요', desc: '아래 가이드를 따라 대응하세요. 증거 수집부터 시작하세요!', tab: 0 },
+  { title: '임금체불에 해당해요', desc: '아래 가이드를 따라 대응하세요. 체불 계산기도 활용해보세요!', tab: 1 },
+  { title: '전세보증금 미반환에 해당해요', desc: '아래 가이드를 따라 대응하세요. 임차권등기명령이 핵심이에요!', tab: 2 },
+  { title: '모욕·명예훼손에 해당해요', desc: '아래 가이드를 따라 대응하세요. 증거 삭제 전에 빨리 캡처하세요!', tab: 3 }
+];
+function diagnose(n) {
+  document.querySelectorAll('.diag-btn').forEach((b,i) => b.classList.toggle('selected', i===n));
+  const r = diagnoseData[n];
+  const el = document.getElementById('diag-result');
+  el.innerHTML = `<strong>✅ ${r.title}</strong><p>${r.desc} 케이스 가이드로 바로 이동했어요 ↓</p>`;
+  el.classList.add('show');
+  // 바로 탭 전환 + 스크롤
+  switchTab(r.tab);
+}
+
+// 케이스 탭
+let currentCaseTab = 0;
+function switchTab(n) {
+  if (currentCaseTab !== n) resetChecklist(currentCaseTab);
+  currentCaseTab = n;
+  document.querySelectorAll('.ctab').forEach((t,i) => t.classList.toggle('active', i===n));
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i===n));
+  // 케이스에 맞는 문서 탭 자동 전환
+  switchDocTab(caseToDocTabMap[n]);
+  document.getElementById('cases').scrollIntoView({behavior:'smooth'});
+}
+
+// 단계 토글
+const seenSteps = [new Set(), new Set(), new Set(), new Set()];
+const stepCounts = [5, 5, 4, 4];
+function toggleStep(card, pIdx) {
+  const steps = document.querySelectorAll(`#s${pIdx} .sc`);
+  const wasOpen = card.classList.contains('open');
+  steps.forEach(c => c.classList.remove('open'));
+  if (!wasOpen) { card.classList.add('open'); seenSteps[pIdx].add(Array.from(steps).indexOf(card)); }
+  const pct = Math.round((seenSteps[pIdx].size / stepCounts[pIdx]) * 100);
+  document.getElementById(`p${pIdx}f`).style.width = pct + '%';
+  document.getElementById(`p${pIdx}t`).textContent = seenSteps[pIdx].size + ' / ' + stepCounts[pIdx] + ' 단계';
+}
+
+// 체크리스트
+function resetChecklist(panelIdx) {
+  const panel = document.getElementById('panel-'+panelIdx);
+  if(!panel) return;
+  panel.querySelectorAll('.ci').forEach(ci => {
+    ci.querySelector('input').checked = false;
+    ci.classList.remove('done');
+  });
+}
+
+// 초기 첫 스텝 열기
+[0,1,2,3].forEach(n => {
+  const first = document.querySelector(`#s${n} .sc`);
+  if (first) { first.classList.add('open'); seenSteps[n].add(0); }
+  const pct = Math.round((1 / stepCounts[n]) * 100);
+  document.getElementById(`p${n}f`).style.width = pct + '%';
+  document.getElementById(`p${n}t`).textContent = '1 / ' + stepCounts[n] + ' 단계';
+});
+
+// 임금 계산기
+function calcWage() {
+  const wage = parseFloat(document.getElementById('wage').value) || 0;
+  const type = document.getElementById('wage-type').value;
+  const months = parseInt(document.getElementById('months').value) || 1;
+  const hours = parseInt(document.getElementById('weekly-hours').value) || 40;
+  if (!wage) { alert('임금을 입력해주세요.'); return; }
+  let monthlyWage = type === 'hourly' ? wage * hours * 4.345 : wage;
+  const base = Math.round(monthlyWage * months);
+  const juhyu = Math.round(base * 1.2);
+  const interest = Math.round(juhyu * 0.2);
+  const total = juhyu + interest;
+  document.getElementById('cr-base').textContent = base.toLocaleString() + '원';
+  document.getElementById('cr-juhyu').textContent = juhyu.toLocaleString() + '원';
+  document.getElementById('cr-interest').textContent = interest.toLocaleString() + '원';
+  document.getElementById('cr-total').textContent = total.toLocaleString() + '원';
+  document.getElementById('calc-result').classList.add('show');
+}
+
+// 문서 탭
+let currentDocTab = 0;
+function switchDocTab(n) {
+  document.querySelectorAll('.doc-tab').forEach((t,i) => t.classList.toggle('active', i===n));
+  document.querySelectorAll('.doc-form').forEach((f,i) => f.classList.toggle('active', i===n));
+  document.getElementById('doc-output').classList.remove('show');
+  document.getElementById('doc-err').classList.remove('show');
+  currentDocTab = n;
+}
+
+// 문서 생성
+async function generateDoc(n) {
+  const titles = ['내용증명 (중고거래)', '내용증명 (전세보증금)', '고소장', '노동청 진정서'];
+  let prompt = '';
+
+  if (n === 0) {
+    // 중고거래 내용증명
+    const myname = document.getElementById('d0-myname').value.trim();
+    const myphone = document.getElementById('d0-myphone').value.trim();
+    const myaddr = document.getElementById('d0-myaddr').value.trim();
+    const theirname = document.getElementById('d0-theirname').value.trim();
+    const theiraddr = document.getElementById('d0-theiraddr').value.trim();
+    const platform = document.getElementById('d0-platform').value;
+    const date = getDateVal('d0-year','d0-month','d0-day');
+    const amount = document.getElementById('d0-amount').value;
+    const item = document.getElementById('d0-item').value.trim();
+    const deadline = document.getElementById('d0-deadline').value;
+    const situation = document.getElementById('d0-situation').value.trim();
+    if (!myname || !item || !amount || !situation) { alert('이름, 물건명, 금액, 피해 상황은 필수입니다.'); return; }
+    prompt = `당신은 법률 문서 작성 전문가입니다. 아래 정보로 한국어 내용증명 문서를 작성하세요.
+
+발신인: ${myname}${myphone ? ' ('+myphone+')' : ''}${myaddr ? '\n주소: '+myaddr : ''}
+수신인: ${theirname || '상대방'}${theiraddr ? '\n주소: '+theiraddr : ' (주소 미상)'}
+거래 플랫폼: ${platform}
+거래 날짜: ${date}
+물건명: ${item}
+피해 금액: ${Number(amount).toLocaleString()}원
+피해 상황: ${situation}
+환불 요청 기한: ${deadline}일
+작성일: ${today}
+
+요구사항:
+1. 한국 내용증명 표준 양식에 맞게 작성
+2. 정중하지만 단호한 법적 문체
+3. 사실관계 명확히 서술
+4. 환불 기한과 법적 조치(형사고소, 민사소액심판) 경고 포함
+5. 형식: 제목 / 발신인·수신인 정보 / 본문 / 날짜 / 서명란
+6. 문서만 출력, 설명 제외
+
+중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
+  } else if (n === 1) {
+    // 전세보증금 내용증명
+    const myname = document.getElementById('d3-myname').value.trim();
+    const myphone = document.getElementById('d3-myphone').value.trim();
+    const myaddr = document.getElementById('d3-myaddr').value.trim();
+    const theirname = document.getElementById('d3-theirname').value.trim();
+    const houseaddr = document.getElementById('d3-houseaddr').value.trim();
+    const deposit = document.getElementById('d3-deposit').value;
+    const period = document.getElementById('d3-period').value.trim();
+    const expiry = getDateVal('d3-ey','d3-em','d3-ed');
+    const deadline = document.getElementById('d3-deadline').value;
+    const situation = document.getElementById('d3-situation').value.trim();
+    if (!myname || !deposit || !houseaddr) { alert('임차인 이름, 보증금 금액, 임대 주택 주소는 필수입니다.'); return; }
+    prompt = `당신은 법률 문서 작성 전문가입니다. 아래 정보로 전세보증금 반환 요청 내용증명 문서를 작성하세요.
+
+발신인(임차인): ${myname}${myphone ? ' ('+myphone+')' : ''}${myaddr ? '\n현재 주소: '+myaddr : ''}
+수신인(임대인): ${theirname || '임대인'}
+임대 주택 주소: ${houseaddr}
+보증금: ${Number(deposit).toLocaleString()}원
+임대차 계약 기간: ${period || '미기재'}
+계약 만료일: ${expiry}
+반환 요청 기한: ${deadline}일
+추가 상황: ${situation || '없음'}
+작성일: ${today}
+
+요구사항:
+1. 한국 내용증명 표준 양식에 맞게 작성
+2. 임대차보호법 관련 조항 인용 (주택임대차보호법 제3조, 제4조 등)
+3. 계약 만료 사실과 보증금 미반환 사실 명확히 서술
+4. 기한 내 미반환 시 임차권등기명령 신청 및 보증금 반환 소송 제기 경고 포함
+5. 형식: 제목 / 발신인·수신인 정보 / 본문 / 날짜 / 서명란
+6. 문서만 출력, 설명 제외
+
+중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
+  } else if (n === 2) {
+    // 고소장
+    const myname = document.getElementById('d1-myname').value.trim();
+    const myaddr = document.getElementById('d1-myaddr').value.trim();
+    const myphone = document.getElementById('d1-myphone').value.trim();
+    const theirname = document.getElementById('d1-theirname').value.trim();
+    const theircontact = document.getElementById('d1-theircontact').value.trim();
+    const type = document.getElementById('d1-type').value;
+    const amount = document.getElementById('d1-amount').value;
+    const situation = document.getElementById('d1-situation').value.trim();
+    if (!myname || !situation) { alert('고소인 이름과 피해 경위는 필수입니다.'); return; }
+    prompt = `당신은 법률 문서 작성 전문가입니다. 아래 정보로 한국어 고소장을 작성하세요.
+
+고소인: ${myname}${myphone ? ' ('+myphone+')' : ''}${myaddr ? ' / 주소: '+myaddr : ''}
+피고소인: ${theirname || '성명불상'}${theircontact ? ' ('+theircontact+')' : ''}
+사건 유형: ${type}
+피해 금액: ${amount ? Number(amount).toLocaleString()+'원' : '미상'}
+피해 경위: ${situation}
+작성일: ${today}
+
+요구사항:
+1. 한국 경찰서 제출용 고소장 표준 양식
+2. 고소 취지, 고소 사실(육하원칙), 증거 목록, 고소 이유 포함
+3. 사기죄의 경우 "기망행위"와 "편취 의사" 명시
+4. 법조문 인용 (해당 범죄의 형법 조항)
+5. 문서만 출력, 설명 제외
+
+중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+
+  } else {
+    // 노동청 진정서
+    const myname = document.getElementById('d2-myname').value.trim();
+    const myphone = document.getElementById('d2-myphone').value.trim();
+    const bossname = document.getElementById('d2-bossname').value.trim();
+    const company = document.getElementById('d2-company').value.trim();
+    const period = `${getDateVal('d2-sy','d2-sm','d2-sd')} ~ ${getDateVal('d2-ey','d2-em','d2-ed')}`;
+    const amount = document.getElementById('d2-amount').value;
+    const situation = document.getElementById('d2-situation').value.trim();
+    if (!myname || !situation) { alert('진정인 이름과 체불 내용은 필수입니다.'); return; }
+    prompt = `당신은 법률 문서 작성 전문가입니다. 아래 정보로 한국어 고용노동부 임금체불 진정서를 작성하세요.
+
+진정인(근로자): ${myname}${myphone ? ' ('+myphone+')' : ''}
+피진정인(사업주): ${bossname || '미상'}${company ? ' / 사업장: '+company : ''}
+근무 기간: ${period}
+체불 금액: ${amount ? Number(amount).toLocaleString()+'원' : '미상'}
+체불 내용: ${situation}
+작성일: ${today}
+
+요구사항:
+1. 고용노동부 진정서 표준 양식
+2. 진정 취지, 진정 내용(사실관계), 요구사항 포함
+3. 근로기준법 위반 조항 명시 (제43조 임금지급 원칙 등)
+4. "처벌을 원한다"는 의사 명시
+5. 문서만 출력, 설명 제외
+
+중요: 이 문서는 정보 제공 목적의 참고용 초안입니다.`;
+  }
+
+  const btn = document.getElementById(`genbtn-${n}`);
+  btn.disabled = true;
+  btn.textContent = '생성 중...';
+  document.getElementById('doc-loading').style.display = 'block';
+  document.getElementById('doc-output').classList.remove('show');
+  document.getElementById('doc-err').style.display = 'none';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const text = data.content?.[0]?.text || '';
+    document.getElementById('doc-text').textContent = text;
+    document.getElementById('doc-output-title').textContent = `생성된 ${titles[n]} 초안`;
+    document.getElementById('doc-output').classList.add('show');
+    // 다음 단계 모달 (0=중고내용증명, 1=전세내용증명→0번모달, 2=고소장→1번, 3=진정서→2번)
+    const modalIdx = n === 0 ? 0 : n === 1 ? 0 : n === 2 ? 1 : 2;
+    showNextStep(modalIdx);
+  } catch (e) {
+    const err = document.getElementById('doc-err');
+    err.textContent = '문서 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = titles[n] + ' 초안 생성하기';
+    document.getElementById('doc-loading').style.display = 'none';
+  }
+}
+
+let lastDocTab = 0;
+function regenDoc() { generateDoc(currentDocTab); }
+function copyDoc() {
+  navigator.clipboard.writeText(document.getElementById('doc-text').textContent).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '복사됨!';
+    setTimeout(() => btn.textContent = '복사하기', 2000);
+  });
+}
+
+// 이메일 알림
+function submitEmail() {
+  const email = document.getElementById('email-input').value;
+  if (!email || !email.includes('@')) { alert('올바른 이메일 주소를 입력해주세요.'); return; }
+  alert('✅ 알림 신청이 완료됐습니다!\n새 케이스 추가 및 업데이트 소식을 알려드릴게요.');
+  document.getElementById('email-input').value = '';
+}
+
+// ── 변호사 필요 여부 판별 ──────────────────────────────
+function checkLawyer() {
+  const amount = parseInt(document.getElementById('lc-amount').value) || 0;
+  const type = parseInt(document.getElementById('lc-type').value);
+  const income = parseInt(document.getElementById('lc-income').value) || 0;
+  const tried = parseInt(document.getElementById('lc-tried').value);
+  const c1 = document.getElementById('lc-c1').checked; // 신원 모름
+  const c2 = document.getElementById('lc-c2').checked; // 상대 변호사 선임
+  const c3 = document.getElementById('lc-c3').checked; // 복잡한 사실관계
+  const c4 = document.getElementById('lc-c4').checked; // 사업체 도산
+
+  // 금액 기준 (케이스별)
+  const selfLimit = [5000000, 30000000, 10000000, 3000000][type];
+  const lawyerLimit = [10000000, 50000000, 50000000, 10000000][type];
+
+  // 법률구조공단 소득 기준 (1인 가구 기준 월 299만원)
+  const klacLimit = 2990000;
+
+  let score = 0;
+  if (amount > selfLimit) score += 2;
+  if (amount > lawyerLimit) score += 3;
+  if (c1) score += 3;
+  if (c2) score += 4;
+  if (c3) score += 2;
+  if (c4) score += 3;
+  if (tried === 1) score += 3;
+
+  const result = document.getElementById('lc-result');
+  result.classList.add('show');
+
+  if (score <= 2) {
+    // 셀프 대응 가능
+    result.innerHTML = `
+      <div class="lc-result-head" style="background:#16a34a">
+        <h3>✅ 셀프 대응으로 충분해요</h3>
+        <p>현재 상황은 변호사 없이도 해결 가능한 경우예요.</p>
+      </div>
+      <div class="lc-result-body">
+        <p>피해금액과 상황을 고려했을 때 위에 있는 단계별 가이드와 문서 자동생성으로 충분히 대응 가능해요. 변호사 선임 비용이 받아올 돈보다 더 클 수 있어요.</p>
+        <a class="lc-action-btn" style="background:#16a34a;color:#fff" href="#cases">케이스 가이드 보기 →</a>
+        <a class="lc-action-btn" style="background:#2563b0;color:#fff" href="#doc-gen">문서 자동생성 하기 →</a>
+      </div>`;
+  } else if (score <= 6 && income <= klacLimit) {
+    // 법률구조공단
+    result.innerHTML = `
+      <div class="lc-result-head" style="background:#2563b0">
+        <h3>🏛️ 법률구조공단 무료 지원 받으세요</h3>
+        <p>소득 기준 충족 + 전문가 도움이 필요한 상황이에요.</p>
+      </div>
+      <div class="lc-result-body">
+        <p>대한법률구조공단은 소득 기준(월 299만원 이하 1인 가구 기준)을 충족하면 소송 지원을 무료로 받을 수 있어요. 우리 서비스에서 준비한 증거 목록과 문서 초안을 들고 방문하면 상담이 훨씬 빨라져요.</p>
+        <a class="lc-action-btn" style="background:#2563b0;color:#fff" href="https://www.klac.or.kr" target="_blank">대한법률구조공단 바로가기 ↗</a>
+        <a class="lc-action-btn" style="background:var(--bg);color:var(--text2);border:1px solid #ddd" href="#doc-gen">문서 먼저 준비하기 →</a>
+      </div>`;
+  } else {
+    // 변호사 필요
+    result.innerHTML = `
+      <div class="lc-result-head" style="background:#e85d26">
+        <h3>⚠️ 변호사 선임을 권장해요</h3>
+        <p>이 케이스는 전문가 도움이 필요한 상황이에요.</p>
+      </div>
+      <div class="lc-result-body">
+        <p>피해금액이 크거나 상황이 복잡해서 혼자 대응하기 어려운 경우예요. 변호사 선임 비용보다 받아올 금액이 훨씬 크므로 전문가의 도움을 받는 것이 유리해요.</p>
+        <p style="margin-bottom:6px"><strong>💡 이렇게 하세요:</strong> 우리 서비스에서 증거 목록과 문서 초안을 먼저 준비하고, 그걸 가지고 변호사 상담을 받으면 상담 시간이 절반으로 줄어요.</p>
+        <a class="lc-action-btn" style="background:#e85d26;color:#fff" href="https://www.lawtalk.co.kr" target="_blank">로톡에서 전문 변호사 찾기 ↗</a>
+        <a class="lc-action-btn" style="background:#2563b0;color:#fff" href="https://www.klac.or.kr" target="_blank">법률구조공단 (소득 기준 확인) ↗</a>
+        <a class="lc-action-btn" style="background:var(--bg);color:var(--text2);border:1px solid #ddd" href="#doc-gen">증거·문서 먼저 준비하기 →</a>
+      </div>`;
+  }
+  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── 다음 단계 모달 ──────────────────────────────────────
+const nextStepData = [
+  {
+    title: '내용증명 생성 완료!',
+    steps: [
+      { title: '발송 후 기다리기 (7일)', text: '상대방이 환불 기한 내에 응답하는지 확인하세요.' },
+      { title: '응답 없으면 → 경찰 고소', text: 'ecrm.police.go.kr에서 온라인으로 고소장 접수하세요. 방금 생성한 문서와 증거를 함께 제출하세요.' },
+      { title: '동시에 → 소액심판 청구', text: 'ecfs.scourt.go.kr에서 민사 소액심판을 신청하면 돈을 실제로 돌려받을 수 있어요.' }
+    ]
+  },
+  {
+    title: '고소장 생성 완료!',
+    steps: [
+      { title: '경찰서 또는 온라인 제출', text: 'ecrm.police.go.kr에서 온라인 접수 가능해요. 방문 시 신분증과 증거 출력물을 지참하세요.' },
+      { title: '사건번호 받아두기', text: '접수 후 사건번호를 반드시 저장하세요. 이후 소액심판 등에 활용돼요.' },
+      { title: '소액심판 병행 권장', text: '형사 고소만으로는 돈을 돌려받기 어려워요. 민사 소액심판을 동시에 진행하세요.' }
+    ]
+  },
+  {
+    title: '노동청 진정서 생성 완료!',
+    steps: [
+      { title: 'labor.moel.go.kr 온라인 접수', text: '민원신청 → 진정서(임금체불)로 접수하세요. 방문 접수도 가능해요.' },
+      { title: '출석 요구에 반드시 응하기', text: '근로감독관 출석 요구를 2회 이상 무시하면 자동 종결됩니다.' },
+      { title: '해결 안 되면 → 민사 소송', text: '진정으로 해결이 안 되면 소액심판을 통해 강제집행까지 가능해요.' }
+    ]
+  }
+];
+
+function showNextStep(docIdx) {
+  const data = nextStepData[docIdx];
+  document.getElementById('ns-title').textContent = data.title;
+  document.getElementById('ns-steps').innerHTML = data.steps.map((s, i) => `
+    <div class="ns-step">
+      <div class="ns-num">${i + 1}</div>
+      <div class="ns-text"><strong>${s.title}</strong>${s.text}</div>
+    </div>`).join('');
+  document.getElementById('next-step-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNextStep() {
+  document.getElementById('next-step-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// 오버레이 바깥 클릭 시 닫기
+document.getElementById('next-step-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeNextStep();
+});
+
+// 이용약관/개인정보 모달
+function openModal(type) {
+  document.getElementById(type+'-modal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(type) {
+  document.getElementById(type+'-modal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+['terms','privacy'].forEach(type => {
+  document.getElementById(type+'-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal(type);
+  });
+});
+</script>
+<!-- 이용약관 / 개인정보처리방침 모달 -->
+<div class="next-step-overlay" id="terms-modal" style="z-index:300">
+  <div class="next-step-modal" style="max-width:600px">
+    <button class="ns-close" onclick="closeModal('terms')">✕</button>
+    <div class="ns-title">이용약관</div>
+    <p class="ns-sub">최종 수정일: 2026년 3월</p>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;max-height:55vh;overflow-y:auto;padding-right:4px">
+      <p><strong>제1조 (목적)</strong><br>
+      본 약관은 억울하지 않게(이하 "서비스")가 제공하는 법률 문서 작성 도우미 서비스의 이용 조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.</p>
+      <br>
+      <p><strong>제2조 (서비스의 성격)</strong><br>
+      본 서비스는 사용자가 입력한 정보를 바탕으로 법률 문서 초안을 생성하는 <strong>정보 제공 서비스</strong>입니다. 본 서비스는 변호사법상 법률 상담·대리·자문 서비스가 아니며, 생성된 문서는 참고용 초안으로만 활용하여야 합니다.</p>
+      <br>
+      <p><strong>제3조 (면책사항)</strong><br>
+      ① 본 서비스가 제공하는 정보 및 생성 문서는 법률 자문이 아니며, 개별 사건의 결과를 보장하지 않습니다.<br>
+      ② 생성된 문서를 사용하기 전 내용의 정확성을 반드시 직접 확인하시기 바랍니다.<br>
+      ③ 서비스 이용으로 발생한 손해에 대해 서비스 운영자는 법령이 허용하는 범위 내에서 책임을 제한합니다.<br>
+      ④ 잘못된 정보 입력으로 인한 문서 오류의 책임은 사용자에게 있습니다.</p>
+      <br>
+      <p><strong>제4조 (금지행위)</strong><br>
+      ① 타인의 정보를 도용하여 문서를 생성하는 행위<br>
+      ② 허위 사실을 기반으로 문서를 생성하여 타인에게 피해를 주는 행위<br>
+      ③ 서비스를 상업적 목적으로 무단 복제·배포하는 행위</p>
+      <br>
+      <p><strong>제5조 (서비스 변경 및 중단)</strong><br>
+      서비스 운영자는 서비스 내용을 변경하거나 중단할 수 있으며, 이에 대해 사전 고지합니다.</p>
+      <br>
+      <p><strong>제6조 (준거법 및 관할)</strong><br>
+      본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 서울중앙지방법원을 전속 관할 법원으로 합니다.</p>
+      <br>
+      <p><strong>문의:</strong> thomas0401lulu@gmail.com</p>
+    </div>
+    <button class="ns-close-btn" onclick="closeModal('terms')">확인</button>
+  </div>
+</div>
+
+<div class="next-step-overlay" id="privacy-modal" style="z-index:300">
+  <div class="next-step-modal" style="max-width:600px">
+    <button class="ns-close" onclick="closeModal('privacy')">✕</button>
+    <div class="ns-title">개인정보처리방침</div>
+    <p class="ns-sub">최종 수정일: 2026년 3월</p>
+    <div style="font-size:13px;color:var(--text2);line-height:1.9;max-height:55vh;overflow-y:auto;padding-right:4px">
+      <p><strong>제1조 (수집하는 개인정보 항목)</strong><br>
+      본 서비스는 문서 생성을 위해 사용자가 직접 입력한 정보(이름, 연락처, 주소, 피해 내용 등)를 수집합니다. 해당 정보는 문서 생성 목적으로만 사용되며 서버에 저장되지 않습니다.</p>
+      <br>
+      <p><strong>제2조 (개인정보의 수집 및 이용 목적)</strong><br>
+      ① 법률 문서 초안 생성<br>
+      ② 서비스 품질 개선을 위한 익명 통계 분석<br>
+      ③ 이메일 알림 신청 시: 서비스 업데이트 안내 (선택 동의)</p>
+      <br>
+      <p><strong>제3조 (개인정보의 보유 및 이용기간)</strong><br>
+      ① 문서 생성 시 입력 정보: 브라우저 세션 종료 시 즉시 파기<br>
+      ② 이메일 알림 신청 정보: 수신 거부 요청 시까지 보관<br>
+      본 서비스는 입력된 개인정보를 별도 서버에 저장하지 않습니다.</p>
+      <br>
+      <p><strong>제4조 (개인정보의 제3자 제공)</strong><br>
+      본 서비스는 사용자의 개인정보를 제3자에게 제공하지 않습니다. 단, AI 문서 생성 시 Anthropic Claude API를 통해 처리되며, 해당 처리는 Anthropic의 개인정보처리방침을 따릅니다.</p>
+      <br>
+      <p><strong>제5조 (이용자의 권리)</strong><br>
+      이용자는 언제든지 수집된 개인정보의 열람, 정정, 삭제를 요청할 수 있습니다.<br>
+      요청 방법: thomas0401lulu@gmail.com 으로 이메일 발송</p>
+      <br>
+      <p><strong>제6조 (쿠키 사용)</strong><br>
+      본 서비스는 서비스 개선을 위해 최소한의 쿠키 및 로컬 스토리지를 사용할 수 있습니다. 브라우저 설정에서 쿠키를 거부할 수 있으나 일부 기능이 제한될 수 있습니다.</p>
+      <br>
+      <p><strong>제7조 (개인정보 보호책임자)</strong><br>
+      이름: 억울하지 않게 운영팀<br>
+      이메일: thomas0401lulu@gmail.com</p>
+    </div>
+    <button class="ns-close-btn" onclick="closeModal('privacy')">확인</button>
+  </div>
+</div>
+
+</body>
+</html>
